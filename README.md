@@ -51,7 +51,7 @@ f:\LearningNotes\自进化智能体\
 ### 2. 论文追踪系统 (`02_前沿论文追踪/`)
 - **定位**：用于承担日常学术文献精读与调研工作。
 - **数据源**：[Hugging Face Daily Papers](https://huggingface.co/papers)
-- **调度机制**：Windows 任务计划程序已配置为每天上午 **10:00**（本机时区）自动执行 `SelfEvolvingAgents-DailyPapers`。
+- **调度机制**：当前未启用自动调度；`SelfEvolvingAgents-DailyPapers` 已于 2026-09-22 删除。
 - **结构化拆解维度**：
   1. 具体研究什么（Research Objective）
   2. 解决了什么核心痛点（Problems & Pain Points）
@@ -69,43 +69,6 @@ python scripts/fetch_hf_papers.py
 ```
 该脚本会自动去重，仅更新当日最新解析，同时完整保留所有历史日期的追踪记录。
 
-## ⏰ 每日自动化配置
+## ⏰ 自动化状态
 
-### 执行内容
-
-每日 10:00 运行 `scripts/fetch_hf_papers.py`，完成以下流程：
-
-1. 请求 Hugging Face Daily Papers API；
-2. 按黑名单、Agent 主体和自进化特征词进行严格筛选；
-3. 生成 `02_前沿论文追踪/YYYY-MM-DD/` 下的当日 Digest；
-4. 从 arXiv 下载筛选论文 PDF；
-5. 增量更新 `02_前沿论文追踪/00_论文追踪总索引.md`。
-
-### Windows 任务计划程序
-
-- **任务名**：`SelfEvolvingAgents-DailyPapers`
-- **触发时间**：每天 `10:00`
-- **执行解释器**：`E:\Anaconda\python.exe`
-- **执行脚本**：`F:\LearningNotes\自进化智能体\scripts\fetch_hf_papers.py`
-- **工作目录**：`F:\LearningNotes\自进化智能体`
-- **启动策略**：错过计划时间后，系统可在下次可用时启动；单次最长运行 2 小时。
-
-### 常用核验与手动控制
-
-```powershell
-# 查看任务状态（需要有权访问任务计划程序）
-Get-ScheduledTask -TaskName 'SelfEvolvingAgents-DailyPapers'
-Get-ScheduledTaskInfo -TaskName 'SelfEvolvingAgents-DailyPapers'
-
-# 立即运行一次
-Start-ScheduledTask -TaskName 'SelfEvolvingAgents-DailyPapers'
-
-# 删除自动化任务
-Unregister-ScheduledTask -TaskName 'SelfEvolvingAgents-DailyPapers' -Confirm:$false
-```
-
-### 配置过程中发现的问题与处理
-
-- 用户给出的交接文档路径并不存在；实际文件是根目录下的 `00_DAILY_PAPERS_AGENT_HANDOVER.md`，已按真实文件读取。
-- 原 README 记录的是每天 20:00，和本次要求冲突；已改为每天 10:00，避免文档与系统配置不一致。
-- 当前 Codex 沙箱普通权限无法写入 Windows 任务计划程序；通过一次管理员授权完成任务注册。若任务被系统策略禁用，需要在 Windows“任务计划程序”中检查该任务的“历史记录”和“上次运行结果”。
+论文追踪目前只支持手动执行，自动化任务已取消。手动运行流程、过滤规则和归档规范见 [00_DAILY_PAPERS_AGENT_HANDOVER.md](./00_DAILY_PAPERS_AGENT_HANDOVER.md)。
