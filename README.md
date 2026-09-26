@@ -63,12 +63,27 @@ f:\LearningNotes\自进化智能体\
 
 ## 🚀 常用手动指令
 
-若需要随时手动触发最新前沿论文同步与分析，可在根目录执行：
+### 1. 深度 Jev 智能分诊模式（推荐，两阶段研判 + 正文核验）：
+```powershell
+python scripts/run_jev_daily_pipeline.py
+# 或指定日期与调试数量
+python scripts/run_jev_daily_pipeline.py --date 2026-09-25
+```
+
+### 2. 纯基线正则初筛模式（零外部模型依赖，纯本地运算）：
 ```powershell
 python scripts/fetch_hf_papers.py
 ```
-该脚本会自动去重，仅更新当日最新解析，同时完整保留所有历史日期的追踪记录。
+
+### 3. 一键在“纯基线”与“Jev 增强”之间切换：
+```powershell
+# 一键移除 Jev 隔离至纯基线:
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/rollback_to_no_jev.ps1
+
+# 一键重新启用 Jev:
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/enable_jev.ps1
+```
 
 ## ⏰ 自动化状态
 
-论文追踪目前只支持手动执行，自动化任务已取消。手动运行流程、过滤规则和归档规范见 [00_DAILY_PAPERS_AGENT_HANDOVER.md](./00_DAILY_PAPERS_AGENT_HANDOVER.md)。
+论文追踪目前只支持手动执行，自动化任务已取消。手动运行流程、过滤规则和归档规范见 [00_DAILY_PAPERS_AGENT_HANDOVER.md](./00_DAILY_PAPERS_AGENT_HANDOVER.md) 与无 Jev 纯基线手册 [00_BASELINE_NO_JEV_HANDOVER.md](./00_BASELINE_NO_JEV_HANDOVER.md)。

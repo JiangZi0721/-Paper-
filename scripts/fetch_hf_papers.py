@@ -56,22 +56,39 @@ def sanitize_filename(filename):
     return re.sub(r'[\/:*?"<>|]', '_', filename).strip()
 
 def fetch_daily_papers(date_str=None):
-    url = "https://huggingface.co/api/daily_papers"
-    if date_str:
-        url += f"?date={date_str}"
+    endpoints = [
+        os.environ.get("HF_ENDPOINT", "https://hf-mirror.com"),
+        "https://huggingface.co"
+    ]
+    # 去重且保持优先级顺序
+    endpoints = list(dict.fromkeys(endpoints))
     
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     }
-    req = urllib.request.Request(url, headers=headers)
-    try:
-        with urllib.request.urlopen(req, timeout=30) as response:
-            if response.status == 200:
-                data = json.loads(response.read().decode('utf-8'))
-                return data
-    except Exception as e:
-        print(f"[-] 请求论文 API 异常 ({url}): {e}", file=sys.stderr)
-        return []
+    
+    for base in endpoints:
+        b = base.rstrip("/")
+        url = f"{b}/api/daily_papers"
+        if date_str:
+            url += f"?date={date_str}"
+        
+        # 针对 hf-mirror 明确绕过本地代理，避免代理握手失败
+        if "hf-mirror.com" in b:
+            opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+        else:
+            opener = urllib.request.build_opener()
+            
+        req = urllib.request.Request(url, headers=headers)
+        try:
+            with opener.open(req, timeout=15) as response:
+                if response.status == 200:
+                    data = json.loads(response.read().decode("utf-8"))
+                    print(f"[*] 成功从 {b} 获取 {len(data)} 篇 Daily Papers 数据")
+                    return data
+        except Exception as e:
+            print(f"[-] 请求论文 API 异常 ({b}): {e}", file=sys.stderr)
+            
     return []
 
 def evaluate_paper_relevance_and_value(item):
