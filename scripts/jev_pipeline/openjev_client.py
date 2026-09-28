@@ -123,8 +123,9 @@ def analyze(paper: dict, api_key: str) -> dict:
         },
         method="POST"
     )
+    opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
     try:
-        with urllib.request.urlopen(request, timeout=60) as response:
+        with opener.open(request, timeout=30) as response:
             return json.loads(response.read().decode("utf-8"))
     except urllib.error.HTTPError as exc:
         raise RuntimeError(f"OpenJEV HTTP {exc.code}: {exc.read().decode('utf-8', errors='replace')}") from exc
