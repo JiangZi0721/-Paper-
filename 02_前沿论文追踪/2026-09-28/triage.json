@@ -1,0 +1,1787 @@
+{
+  "generated_at": "2026-09-28T02:30:11.652954+00:00",
+  "date": "2026-09-28",
+  "is_limited_debug": false,
+  "analyzed_count": 5,
+  "usage_total": {
+    "input_tokens": 33125,
+    "output_tokens": 3121,
+    "cost": 0.0013912500000000001
+  },
+  "records": [
+    {
+      "paper": {
+        "id": "2609.31620",
+        "title": "FuseReg: Regularizing Layer Fusion Mitigates the Reconstruction-Generation Gap in Representation Autoencoders",
+        "summary": "Representation autoencoders (RAEs) reuse features from a pretrained visual encoder as reconstruction and diffusion latents, integrating strong visual representations into image generation. However, RAEs still need to decide which encoder layers form the shared latent space for the generator and pixel decoder. This choice involves a trade-off. Shallower layers tend to preserve fine pixel details better, while deeper layers tend to yield better generation metrics. A fixed heuristic layer fusion therefore couples two stages that benefit from different information. We introduce FuseReg, which replaces heuristic feature selection with training over random subsets of encoder layers. We theoretically analyze the underlying mechanism: subset sampling explicitly penalizes sensitivity to cross-layer disagreement. On ImageNet-256 with DINOv3-L, a single FuseReg decoder reconstructs from full, sparse, and single-layer fusions without retraining, achieving higher PSNR than decoders specialized to fixed fusions. This flexibility also benefits generation: decoder replacement alone reduces unguided gFID by 27% with an unchanged RAEv2 DiT-XL generator. The same regularization principle extends to diffusion training, with joint regularization of both stages reducing unguided gFID by 29% on DiT-Base. These results show that training downstream models for layer-fusion robustness narrows the reconstruction-generation gap without modifying the pretrained encoder.",
+        "authors": [
+          {
+            "_id": "6ab9c761356575bf2ab7a854",
+            "name": "Hongyang Du",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9c761356575bf2ab7a855",
+            "name": "Yunfei Xie",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9c761356575bf2ab7a856",
+            "name": "Junjie Ye",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9c761356575bf2ab7a857",
+            "name": "Jiawei Yang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9c761356575bf2ab7a858",
+            "name": "Xiaoyan Cong",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9c761356575bf2ab7a859",
+            "name": "Haodong Zhang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9c761356575bf2ab7a85a",
+            "name": "Yongchao Huang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9c761356575bf2ab7a85b",
+            "name": "Haiyu Wu",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9c761356575bf2ab7a85c",
+            "name": "Zongxia Li",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9c761356575bf2ab7a85d",
+            "name": "Shihang Gui",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9c761356575bf2ab7a85e",
+            "name": "Dawei Liu",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9c761356575bf2ab7a85f",
+            "name": "Runhao Li",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9c761356575bf2ab7a860",
+            "name": "Jingcheng Ni",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9c761356575bf2ab7a861",
+            "name": "Chen Wei",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9c761356575bf2ab7a862",
+            "name": "Randall Balestriero",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9c761356575bf2ab7a863",
+            "name": "Yue Wang",
+            "hidden": false
+          }
+        ],
+        "organization": {
+          "_id": "66eb6cd5d10fdbc179fa6a20",
+          "name": "USC-PSI-Lab",
+          "fullname": "USC Physical Superintelligence (PSI) Lab",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/6552aa185138c382d3228761/vXpouU0ojcyCalAB0bgde.png"
+        },
+        "upvotes": 14,
+        "github": "https://github.com/Hongyang-Du/FuseReg",
+        "hf_url": "https://huggingface.co/papers/2609.31620",
+        "arxiv_url": "https://arxiv.org/abs/2609.31620",
+        "published_at": "2026-09-24T20:00:00.000Z"
+      },
+      "decision": {
+        "model": "openjev",
+        "answers": {
+          "primary_class": {
+            "type": "choice",
+            "choice": "adjacent_inspiration",
+            "probabilities": {
+              "not_recommended": 0.45,
+              "adjacent_inspiration": 0.55,
+              "core_self_evolving": 0
+            },
+            "confidence": 0.33
+          },
+          "value_tier": {
+            "type": "choice",
+            "choice": "new_idea_insight",
+            "probabilities": {
+              "new_idea_insight": 0.92,
+              "algorithm_score_optimization": 0.08,
+              "adjacent_inspiration": 0,
+              "routine_or_unclear": 0
+            },
+            "confidence": 0.89
+          },
+          "triage_reason": {
+            "type": "choice",
+            "choice": "transferable_mechanism",
+            "probabilities": {
+              "direct_self_evolution_loop": 0,
+              "incremental_optimization": 0.38,
+              "weak_or_insufficient_evidence": 0.05,
+              "off_topic": 0.04,
+              "transferable_mechanism": 0.41,
+              "new_system_boundary": 0.01,
+              "benchmark_score_focus": 0.11
+            },
+            "confidence": 0.31
+          },
+          "mechanisms": {
+            "type": "choice",
+            "choice": "none_clear",
+            "probabilities": {
+              "auto_research": 0,
+              "rl_policy": 0.01,
+              "reasoning_test_time": 0,
+              "harness": 0.02,
+              "act_tool_use": 0,
+              "safety_governance": 0,
+              "none_clear": 0.97,
+              "memory_context": 0
+            },
+            "confidence": 0.96
+          },
+          "lifecycle": {
+            "type": "choice",
+            "choice": "offline_training",
+            "probabilities": {
+              "offline_training": 0.58,
+              "online_exploration": 0,
+              "meta_design_search": 0.36,
+              "none_clear": 0.02,
+              "runtime_evolution": 0,
+              "distillation_transfer": 0.04
+            },
+            "confidence": 0.5
+          },
+          "evidence_quality": {
+            "type": "score",
+            "score": 3.08,
+            "legend": {
+              "0": "Insufficient",
+              "1": "Weak",
+              "2": "Moderate",
+              "3": "Strong",
+              "4": "Very strong"
+            },
+            "probabilities": {
+              "0": 0.01,
+              "1": 0.01,
+              "2": 0.05,
+              "3": 0.78,
+              "4": 0.15
+            },
+            "confidence": 0.81
+          },
+          "transferable_insight": {
+            "type": "noul",
+            "noul": 0.44
+          },
+          "novelty": {
+            "type": "noul",
+            "noul": 0.73
+          },
+          "review": {
+            "type": "choice",
+            "choice": "read_first",
+            "probabilities": {
+              "read_first": 0.97,
+              "read_if_time": 0.01,
+              "inspect_abstract_only": 0.02,
+              "skip_for_now": 0
+            },
+            "confidence": 0.95
+          }
+        },
+        "usage": {
+          "input_tokens": 2835,
+          "output_tokens": 487,
+          "cost": 0.00011907
+        },
+        "id": "gen-dec-1790562514-kImlln32cQvkzSgbMZ5c",
+        "provider": "TypeSafe"
+      },
+      "verification": {
+        "status": "verified",
+        "evidence": {
+          "status": "available",
+          "url": "https://arxiv.org/html/2609.31620",
+          "sections": [
+            {
+              "heading": "1 Introduction",
+              "excerpt": "Representation autoencoders (RAEs) use a frozen visual encoder to define the latent\nspace of a diffusion model and learn a decoder that maps the encoder’s features back\nto pixels ( Zheng et al., 2025 ) .\nA visual encoder, however, produces a hierarchy of features whose content\nchanges with depth, leaving the RAE to decide how those layers become a single latent.\nLayer fusion defines the interface between the generator, which models the latent\ndistribution, and the decoder, which turns generated latents into images.\nA decoder tied to one fusion can therefore limit the quality and flexibility of\nthe entire pipeline. RAEv2 commits to a fixed heuristic layer fusion by summing the last k k encoder\nlayers ( Singh et al., 2026 ) . In the DINOv3-L\nsetting ( Siméoni et al., 2025 ) , expanding the fused subset from k = 7 k{=}7 to k = 23 k{=}23 increases reconstruction PSNR from 22.58 22.58 to 27.04 27.04 dB but also increases unguided gFID from 1.65 1.65 to 3.01 3.01 and guided gFID from 1.06 1.06 to 1.25 1.25 . The fusion that\nbest preserves pixel quality is therefore not the one that is easiest to model generatively. Adding shallow, pixel-aligned layers supplies details that directly help\nreconstruction losses such as ℓ 2 \\ell_{2} and LPIPS ( Zhang et al., 2018 ) ; the subset\nrestricted to deeper, more semantic layers yields lower reported gFID in this setting.\nA single fixed subset binds the decoder and generator to the same choice even though\nthey solve different prediction problems. The reconstruction objective favors the shallowest\nlayers and ignores deep layers ( Figure 1 ), whereas diffusion favors the deepest layers. This\ndifference in latent preference is the reconstruction–generation gap that we address. We address this mismatch with FuseReg (layer- fus ion reg ularization), which trains the decoder and generator on varying combinations of encoder layers. During training, we randomly select a subset of layers to form the latent. Learning to reconstruct\nthe pixels from different layer combinations encourages the\ndecoder to use information across layers and reduces its reliance\non shallow-layer shortcuts. The resulting decoder supports any full, sparse, and singl"
+            },
+            {
+              "heading": "2 Related Work",
+              "excerpt": "Existing representation-based generative methods primarily improve performance by\nrefining the latent representation or its alignment with the generative model.\nRAEs use frozen visual encoders to define the latent space of generative\nmodels ( Zheng et al., 2025 ) , and subsequent work extends this paradigm to video\ngeneration ( Guo et al., 2026 ; Xie et al., 2026 ) . Building on this framework, one line\nof work redesigns the tokenizer or latent space ( Jia et al., 2026 ; Bi et al., 2026 ; Chen et al., 2026 ; Chang et al., 2026 ) , while another modifies the training objectives of the\ntokenizer or generator to improve representation alignment ( Yu et al., 2025 ; Leng et al., 2025 ; Singh et al., 2025 ; Shin et al., 2026 ) . These approaches improve the\nquality or modelability of the latent representation, but generally optimize around\na single, predetermined representation configuration. More directly related to our work are methods that aggregate features from multiple\nencoder depths. RAEv2 uses a fixed sum of the last several encoder\nlayers ( Singh et al., 2026 ) , whereas DRoRAE and attentive multi-layer probing learn\ndeterministic fusion weights across depths ( Zhu et al., 2026 ; Ciernik et al., 2026 ) . These methods share the objective of selecting or learning a\npreferred layer composition. In contrast, we ask how the decoder and generator can\nremain effective across a family of layer-fusion configurations, rather than how to\nidentify a single optimal fusion. From a training perspective, our method is related to dropout and nested\ndropout ( Srivastava et al., 2014 ; Rippel et al., 2014 ) , as well as LayerDrop and\nMatryoshka representation learning ( Fan et al., 2020 ; Kusupati et al., 2022 ) .\nThese methods stochastically vary the available computational paths or representation\nsubsets during training to support regularization, flexible deployment, or efficient\ninference. We instead apply this principle to the layer-fusion interface of an RAE:\nwe randomize the frozen encoder layers used to construct the latent representation,\ntraining downstream models for robustness across fusion configurations rather than\ndependence on a single fixed fusion. § A provides"
+            },
+            {
+              "heading": "7 Limitations",
+              "excerpt": "Our empirical study focuses on ImageNet-256 with a frozen DINOv3-L encoder and\nDiT-Base and DiT-XL generators under matched training budgets. This establishes the\nbehavior of randomized fusion within a controlled RAE pipeline; transfer to other\nencoder hierarchies, resolutions, data domains, and longer training schedules\nrequires further evaluation. The decoder and generator also respond differently\nto regularization, with preferred rates depending on model scale, evaluation metric,\nand guidance ( Tables 2 and 6 ). Applying FuseReg in a new\nsetting therefore calls for selecting the two rates separately. The sampling identities and second-order separation from deterministic global\nfusion are exact for the specified subset distribution. The objective decompositions\nassume homogeneous linear predictors and squared loss (§ E.6 ). They\ncharacterize the induced training signal, while the reconstruction and generation\nbenefits in nonlinear models are established empirically. Extending this\ncharacterization to mixed reconstruction losses and the complete guided sampling\ntrajectory remains open."
+            },
+            {
+              "heading": "8 Conclusion",
+              "excerpt": "We introduced FuseReg, which treats layer fusion as a training distribution within\nrepresentation autoencoders. Sampling normalized subsets of frozen encoder features\npreserves the full-layer latent in expectation while varying it along cross-layer\ndisagreement directions. This variation induces an explicit disagreement penalty\nunder linear squared loss, and the second-order structure of subset sampling cannot\nbe matched by deterministic global fusion. The experiments show that a single trained decoder\nsupports full, sparse, and single-layer fusions, and that improving this readout\nbenefits generation even with an unchanged generator. Applying the same principle\nto diffusion training demonstrates complementary gains with separately chosen\nregularization strengths. Together, these findings connect the\nreconstruction–generation gap to the dependence of downstream models on a particular\nlayer composition. Training for robustness across compositions makes information\ndistributed across encoder depths more accessible to both stages, providing a way to\nimprove the decoder–generator interface while keeping the pretrained encoder fixed."
+            },
+            {
+              "heading": "B.1 Encoder, layer fusions, and evaluation metrics",
+              "excerpt": "All experiments use a frozen DINOv3-L encoder and ImageNet at 256 × 256 256{\\times}256 resolution. The candidate pool contains K = 23 K{=}23 transformer layers. The main\nreconstruction comparisons use the full k = 23 k{=}23 fusion, the k = 7 k{=}7 fusion over\nlayers { ℓ 11 , ℓ 13 , … , ℓ 23 } \\{\\ell_{11},\\ell_{13},\\ldots,\\ell_{23}\\} , and the single layer ℓ 11 \\ell_{11} . FuseReg normalizes each sampled fusion by its number of retained\nlayers ( Equation 2 ); fixed-fusion baselines retain their stated scale\nconventions. We evaluate reconstruction with PSNR, SSIM, and rFID on 50k images, and generation\nwith gFID and IS over 50k class-conditional samples using 50 Euler steps. The\nper-layer diagnostic in Figure 4 uses the same 10,000 held-out\nimages for both decoders and retains RAEv2’s fixed ℓ 23 \\ell_{23} token-mean surrogate\nin every probe."
+            }
+          ]
+        },
+        "decision": {
+          "model": "openjev",
+          "answers": {
+            "novelty_level": {
+              "type": "choice",
+              "choice": "uncertain",
+              "probabilities": {
+                "new_mechanism": 0.46,
+                "incremental": 0.06,
+                "uncertain": 0.48
+              },
+              "confidence": 0.22
+            },
+            "comparison": {
+              "type": "choice",
+              "choice": "specific",
+              "probabilities": {
+                "missing": 0,
+                "specific": 1,
+                "generic": 0
+              },
+              "confidence": 1
+            },
+            "evaluation": {
+              "type": "choice",
+              "choice": "cross_domain_or_ablation",
+              "probabilities": {
+                "insufficient": 0,
+                "cross_domain_or_ablation": 0.56,
+                "benchmark_only": 0.44
+              },
+              "confidence": 0.33
+            }
+          },
+          "usage": {
+            "input_tokens": 2780,
+            "output_tokens": 135,
+            "cost": 0.00011676
+          },
+          "id": "gen-dec-1790562528-93kmLPA83F9P8YvE9sKp",
+          "provider": "TypeSafe"
+        }
+      }
+    },
+    {
+      "paper": {
+        "id": "2609.31473",
+        "title": "Game Arena: Strategic LLM Evaluation in Competitive Environments",
+        "summary": "We introduce Kaggle Game Arena, an open and ever-expanding platform to evaluate large language models (LLMs) through competitive games. Different from static benchmarks, game arena enables models to play head-to-head matchups in structured environments where the gameplay strength naturally increases as models evolve, preventing performance saturation. This technical report details the infrastructure behind Game Arena and describes the three pilot game environments: Chess, Poker, and Werewolf. These environments span perfect information, imperfect information, and multiplayer game settings, enabling a systematic study of models' strategic planning, adaptation, and robustness under uncertainty. For each game, we provide a detailed description of the environment, evaluation metrics, and results from running full competitions across models. Through robust infrastructure and large-scale ground-truth based evaluation, Game Arena ensures reproducibility, transparency and generalizability to new games and variants over time.",
+        "authors": [
+          {
+            "_id": "6ab9cb84356575bf2ab7a890",
+            "name": "Bovard Doerschuk-Tiberi",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a891",
+            "name": "Yao Yan",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a892",
+            "name": "Justin Chiu",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a893",
+            "name": "Hann Wang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a894",
+            "name": "Timothy Chung",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a895",
+            "name": "Martyna Plomecka",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a896",
+            "name": "John Schultz",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a897",
+            "name": "Jon Lipovetz",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a898",
+            "name": "Clayton Drazner",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a899",
+            "name": "Yuchen Zhuang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a89a",
+            "name": "Jaimie Hwang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a89b",
+            "name": "Nate Keating",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a89c",
+            "name": "Riley Jones",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a89d",
+            "name": "Andrew Lee",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a89e",
+            "name": "Oran Kelly",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a89f",
+            "name": "Ian Gemp",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8a0",
+            "name": "Michael Aaron",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8a1",
+            "name": "Laurel Prince",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8a2",
+            "name": "Kate Larson",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8a3",
+            "name": "Jeff Moser",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8a4",
+            "name": "Harrison Jobe",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8a5",
+            "name": "Chad Woodford",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8a6",
+            "name": "Siqi Liu",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8a7",
+            "name": "Andrew Wang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8a8",
+            "name": "Bo Chang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8a9",
+            "name": "Christopher D&#39;Mello",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8aa",
+            "name": "Diane Chaleff",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8ab",
+            "name": "Addison Howard",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8ac",
+            "name": "Johnny Yip",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8ad",
+            "name": "Chuck Sugnet",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8ae",
+            "name": "Antonio Gulli",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8af",
+            "name": "Meghan O&#39;Connell",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8b0",
+            "name": "Will Cukierski",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8b1",
+            "name": "Nenad Tomasev",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8b2",
+            "name": "Dima Yeroshenko",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8b3",
+            "name": "Kinjal Parekh",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8b4",
+            "name": "Roxanne Daniel",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8b5",
+            "name": "Marc Lanctot",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8b6",
+            "name": "Domino Weir",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8b7",
+            "name": "Elsa Dong",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8b8",
+            "name": "Daniel Hennes",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8b9",
+            "name": "Melissa Nalubwama",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8ba",
+            "name": "Robert Fraser",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8bb",
+            "name": "Ryan Trostle",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8bc",
+            "name": "Jun Peng",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8bd",
+            "name": "Tom Mason",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8be",
+            "name": "Lloyd Hightower",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8bf",
+            "name": "Chiamaka Chukwuka",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8c0",
+            "name": "Yuexiang Zhai",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8c1",
+            "name": "Phoebe Kirk",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8c2",
+            "name": "Yi Su",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8c3",
+            "name": "Yuting Han",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8c4",
+            "name": "Jie Ren",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8c5",
+            "name": "Chris Prichard",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8c6",
+            "name": "Sahand Sharifzadeh",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8c7",
+            "name": "Karim Hakimzadeh",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8c8",
+            "name": "DJ Sterling",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8c9",
+            "name": "Meg Risdal",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8ca",
+            "name": "Kate Olszewska",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8cb",
+            "name": "Ya Xu",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8cc",
+            "name": "Orhan Firat",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cb84356575bf2ab7a8cd",
+            "name": "Minmin Chen",
+            "hidden": false
+          }
+        ],
+        "organization": {
+          "_id": "62b433171bdae0c3bfab99cc",
+          "name": "kaggle",
+          "fullname": "Kaggle",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/1655980755423-5fbfd09ee366524fe8e97cd3.png"
+        },
+        "upvotes": 2,
+        "github": null,
+        "hf_url": "https://huggingface.co/papers/2609.31473",
+        "arxiv_url": "https://arxiv.org/abs/2609.31473",
+        "published_at": "2026-09-24T20:00:00.000Z"
+      },
+      "decision": {
+        "model": "openjev",
+        "answers": {
+          "primary_class": {
+            "type": "choice",
+            "choice": "adjacent_inspiration",
+            "probabilities": {
+              "adjacent_inspiration": 0.93,
+              "not_recommended": 0.07,
+              "core_self_evolving": 0
+            },
+            "confidence": 0.89
+          },
+          "value_tier": {
+            "type": "choice",
+            "choice": "new_idea_insight",
+            "probabilities": {
+              "adjacent_inspiration": 0,
+              "routine_or_unclear": 0,
+              "algorithm_score_optimization": 0,
+              "new_idea_insight": 1
+            },
+            "confidence": 1
+          },
+          "triage_reason": {
+            "type": "choice",
+            "choice": "new_system_boundary",
+            "probabilities": {
+              "new_system_boundary": 0.7,
+              "transferable_mechanism": 0.06,
+              "weak_or_insufficient_evidence": 0.08,
+              "off_topic": 0.02,
+              "incremental_optimization": 0.03,
+              "direct_self_evolution_loop": 0.04,
+              "benchmark_score_focus": 0.07
+            },
+            "confidence": 0.66
+          },
+          "mechanisms": {
+            "type": "choice",
+            "choice": "harness",
+            "probabilities": {
+              "none_clear": 0.01,
+              "rl_policy": 0,
+              "safety_governance": 0,
+              "act_tool_use": 0.07,
+              "memory_context": 0,
+              "auto_research": 0.01,
+              "harness": 0.91,
+              "reasoning_test_time": 0
+            },
+            "confidence": 0.9
+          },
+          "lifecycle": {
+            "type": "choice",
+            "choice": "online_exploration",
+            "probabilities": {
+              "online_exploration": 0.66,
+              "meta_design_search": 0.04,
+              "offline_training": 0,
+              "distillation_transfer": 0,
+              "runtime_evolution": 0.03,
+              "none_clear": 0.27
+            },
+            "confidence": 0.59
+          },
+          "evidence_quality": {
+            "type": "score",
+            "score": 2.48,
+            "legend": {
+              "0": "Insufficient",
+              "1": "Weak",
+              "2": "Moderate",
+              "3": "Strong",
+              "4": "Very strong"
+            },
+            "probabilities": {
+              "0": 0.06,
+              "1": 0.06,
+              "2": 0.27,
+              "3": 0.55,
+              "4": 0.06
+            },
+            "confidence": 0.47
+          },
+          "transferable_insight": {
+            "type": "noul",
+            "noul": 0.61
+          },
+          "novelty": {
+            "type": "noul",
+            "noul": 0.72
+          },
+          "review": {
+            "type": "choice",
+            "choice": "read_first",
+            "probabilities": {
+              "read_first": 0.67,
+              "skip_for_now": 0.05,
+              "read_if_time": 0.17,
+              "inspect_abstract_only": 0.11
+            },
+            "confidence": 0.55
+          }
+        },
+        "usage": {
+          "input_tokens": 4772,
+          "output_tokens": 488,
+          "cost": 0.000200424
+        },
+        "id": "gen-dec-1790562534-z8lNyo0an0pbkeSDP4pv",
+        "provider": "TypeSafe"
+      },
+      "verification": {
+        "status": "verified",
+        "evidence": {
+          "status": "available",
+          "url": "https://arxiv.org/html/2609.31473",
+          "sections": [
+            {
+              "heading": "1 Introduction",
+              "excerpt": "A major challenge facing modern AI research is reliably evaluating the performance of LLMs. Standardized static benchmarks such as MMLU ( Hendrycks et al., 2021 ) , GSM8K ( Cobbe et al., 2021 ) , and HellaSwag ( Zellers et al., 2019 ) have long been important tools for measuring model progress in knowledge retrieval, mathematical reasoning, and commonsense reasoning.\nHowever, as the performance of frontier models on these fixed test sets approaches saturation, their ability to distinguish between different systems decreases ( White et al., 2024 ) . Furthermore, the static nature of these benchmarks makes them susceptible to data contamination, where test data may leak into the training corpus and lead to overestimation of performance ( White et al., 2024 ; Kapoor et al., 2024 ) . As an alternative, the community has turned to dynamic, preference-based evaluation. Chatbot Arena ( Chiang et al., 2024 ) piloted pairwise comparisons using crowdsourced human votes. MT-bench ( Zheng et al., 2023 ) introduced the LLM-as-a-judge paradigm, using strong models to evaluate weaker models through multi-turn conversations. These dynamic approaches allow for the generation of fresh evaluation instances to resist saturation. However, these approaches have limitations. Human and LLM judges are inherently subjective and often apply inconsistent standards; furthermore, they are susceptible to biases such as verbosity preference and sycophancy, which ultimately yields highly noisy evaluation data. A more reliable alternative is to anchor on ground-truth outcomes. Games offer a compelling option to address both saturation and subjectivity. Unlike static question-answer pairs, each game requires the players to adapt and make strategic decisions based on opponents’ decisions. As the models improve and their strength increases, the games played evolve and are less subject to saturation. Meanwhile, the performance of the players is objectively measurable based on outcomes like wins, losses and draws. There is a long track record of using games to evaluate earlier machine learning models, from Deep Blue’s landmark victory in Chess ( Campbell et al., 2002 ) to AlphaGo’s breakthrough in Go"
+            },
+            {
+              "heading": "2 Methods",
+              "excerpt": "The first set of game environments released is designed around a shared protocol. In every game, we use a uniform, text-based harness: at each decision point, models receive a natural language description of both the current game state and its history, and must return a single action in a prescribed format. When a model produces an invalid response, the harness permits a small number of retries with minimal feedback to attempt a new valid response. Full prompt templates are given in Appendix B ). Second, in all games, we use decisive outcomes including wins, losses, draws or chip counts to compute metrics and build leaderboards, which are not influenced by subjective interpretation. Third, we employed variance reduction techniques and provide bootstrapped confidence intervals for evaluation. Figure 1 demonstrates the Game Arena framework. The three released environments Chess, Poker and Werewolf cover differences in information structure and interaction complexity, as shown in the Table 1 . The remainder of this section will present each environment, the common evaluation framework, and the set of models evaluated."
+            },
+            {
+              "heading": "2.4 Evaluation Framework",
+              "excerpt": "As the three environments differ in outcome structure, we uses a domain-appropriate primary metric for each. For Chess, model strength is quantified via Elo-style ratings derived from the Bradley–Terry model ( Bradley and Terry, 1952 ) fitted to all pairwise match outcomes (draws scored as 0.5). Since Elo is identifiable only up to an additive constant, we anchor the scale by setting the lowest-rated model to 0. We report 95% confidence intervals from bootstrap resampling and provide an approximate external calibration by matching models against multiple Stockfish skill levels and interpolating against reference CCRL Elo mappings; this calibration is less reliable outside the engine calibration range. For Poker, performance is measured in big blinds won per 100 hands (BB/100), the standard metric that normalizes returns across stack sizes and game length. Each model’s BB/100 aggregates net winnings across all ∼ 180,000 {\\sim}180{,}000 hands, with confidence intervals obtained via block bootstrap over episodes to account for within-episode correlation. Bootstrapped win-rate distributions are additionally reported for all pairwise matchups. For Werewolf, raw win rates conflate individual skill with role-assignment luck because the game is team-based and asymmetric. We therefore employ a game-theoretic evaluation (GTE) framework ( Liu et al., 2025 ) that decomposes each model’s overall skill into role-specific contributions (Werewolf, Seer, Doctor, Villager), estimating per-model, per-role parameters from the distribution of outcomes across ∼ 31,000 {\\sim}31{,}000 games. Confidence intervals are computed via bootstrap; the full GTE formulation is given in Appendix A.7 . In all three environments, every model pair is evaluated under identical conditions in a full round-robin, with outcomes logged at the finest available granularity (per-move for Chess, per-hand for poker, per-game for Werewolf). While summary rankings and bracketed tournaments are provided for public communication, all analyses in this paper are grounded in the comprehensive round-robin data."
+            },
+            {
+              "heading": "4 Conclusions and Limitations",
+              "excerpt": "We introduced Game Arena, an open, evolving benchmark and dataset for evaluating the strategic and interactive capabilities of LLMs through repeated head-to-head gameplay.\nAcross large-scale round-robin matches, we find that model strength is sharply stratified within each game environment, but not consistent across games, underscoring that “strategic gameplay” is inherently multi-faceted. Figure 4 shows that cost–performance trade-offs are only partially shared across games: Chess (both Chess Text and Chess Opening) and Werewolf exhibit a broadly similar efficient frontier, while poker reshapes the frontier and reorders which models are cost-effective. This cross-game divergence indicates that competitive games probe distinct dimensions of strategic competence, and positions a Game Arena with ever-expanding game environments to remain informative as frontier models improve. By pairing outcome metrics with diagnostic analyses—including temporal localization of advantage accumulation, reliability via invalid-action retries, interpretable strategic-style statistics, and role-specific skill decomposition—Game Arena supports comparative evaluation that is both statistically grounded and behaviorally informative.\nWe release the harness and datasets containing full game trajectories to support reproducible benchmarking and downstream research on strategic generalization, robustness, and benchmark designs. We hope Game Arena serves as shared infrastructure for evaluating foundation models and agents as they continue to evolve. The dynamic nature of Game Arena mitigates performance saturation and enables continuous benchmarking as the model landscape evolves. While this work establishes the core evaluation framework and a foundation for generalizable game-based assessment, several limitations remain and open up important directions for future research."
+            },
+            {
+              "heading": "A.1 System Architecture and Visualization Framework",
+              "excerpt": "Game Arena extends the existing Kaggle infrastructure to run structured simulations between LLM models. Each game environment consists of two main components: a declarative JSON specification that defines the general setup: what models observe, which actions are permitted, and how rewards are computed, and a Python interpreter that implements the mechanics, validates moves, updates the state, and determines termination conditions. Environments for the games are adapted from established RL and multi-agent frameworks such as Gymnasium, PettingZoo, and OpenSpiel [ 31 , 29 , 19 ] or are developed specifically for Kaggle competitions. This architecture supports a broad range of games: from deterministic board games to partially observable, multi-player settings, within a unified execution system.\nEvery turn produces an immutable snapshot of the complete game state, including the model’s action and any accompanying explanation. Together, these snapshots form a full episodic trace that can be serialized to JSON, enabling replay, large-scale analysis, and reliable comparisons across tens of thousands of matches.\nThe visualization layer is built using a modern web stack (TypeScript, React, and Canvas) and separates shared interface infrastructure from game-specific rendering logic. Individual games provide custom renderers for drawing the board state, while the core system manages playback controls, timeline navigation, and interaction panels.\nA central interface component is the Reasoning Panel, which surfaces how LLMs arrive at decisions. When available, models provide natural-language explanations describing strategic considerations, uncertainty, or opponent modeling. These explanations are stored alongside gameplay trajectories and rendered with full Markdown support. The panel supports both a streaming mode—simulating token-by-token generation for demonstrations—and a condensed log view for efficient review. Users can expand or collapse sections, navigate the timeline, and jump to key events. The goal of the visualizer is not only to display outcomes. Rather than evaluating models solely by win rate, it provides visibility into how they reason under competitive pres"
+            },
+            {
+              "heading": "A.7 Game-Theoretic Evaluation (GTE) for Werewolf",
+              "excerpt": "Game-Theoretic Evaluation, The MvMvR Meta-Game: To conduct a robust evaluation of Werewolf models that goes beyond simple average win rates, we employ a game-theoretic evaluation framework with a “model-vs-model-vs-role” (MvMvR) meta-game [ 20 ] (code available at https://github.com/google-deepmind/polarix ). Traditional leaderboards often aggregate performance across all scenarios equally, which can allow models to achieve high rankings by excelling at frequent but unchallenging tasks while failing at critical ones. Our approach casts evaluation as a competitive interaction between strategic entities, aiming to identify models that are not only strong on average but also robust across the most discriminative and challenging game roles. Meta-Game Formulation: We formulate the evaluation process as a three-player meta-game. The players and their respective action sets are defined as follows: The Role Player ( P role P_{\\text{role}} ): Represents the evaluation arbiter. Its action is to select a role a role ∈ 𝒜 role a_{\\text{role}}\\in\\mathcal{A}_{\\text{role}} (e.g., Seer, Werewolf, Villager) to serve as the current test case. Model A ( P A P_{A} ): Represents a competing model. Its action is to select a model policy a A ∈ 𝒜 model a_{A}\\in\\mathcal{A}_{\\text{model}} to achieve a higher winrate in role a role a_{\\text{role}} than model B. Model B ( P B P_{B} ): Represents a competing model. Its action is to select a model policy a B ∈ 𝒜 model a_{B}\\in\\mathcal{A}_{\\text{model}} to achieve a higher winrate in role a role a_{\\text{role}} than model A. The core of this evaluation lies in the payoff functions, which are derived from the empirical performance of models in specific roles. Let v ⁡ ( a model , a role ) ∈ [ 0 , 1 ] v(a_{\\text{model}},a_{\\text{role}})\\in[0,1] denote the empirical win rate of an model when playing a specific role. This metric is calculated by aggregating binary game outcomes over all recorded matches: The utility functions for the three players are designed to align their strategic incentives with the goals of rigorous evaluation: In this setup, Model A and B play a zero-sum game relative to each other for any given role. Both strive to maximize"
+            }
+          ]
+        },
+        "decision": {
+          "model": "openjev",
+          "answers": {
+            "novelty_level": {
+              "type": "choice",
+              "choice": "new_mechanism",
+              "probabilities": {
+                "incremental": 0.31,
+                "new_mechanism": 0.36,
+                "uncertain": 0.33
+              },
+              "confidence": 0.05
+            },
+            "comparison": {
+              "type": "choice",
+              "choice": "specific",
+              "probabilities": {
+                "generic": 0,
+                "specific": 1,
+                "missing": 0
+              },
+              "confidence": 1
+            },
+            "evaluation": {
+              "type": "choice",
+              "choice": "cross_domain_or_ablation",
+              "probabilities": {
+                "insufficient": 0.07,
+                "cross_domain_or_ablation": 0.74,
+                "benchmark_only": 0.19
+              },
+              "confidence": 0.61
+            }
+          },
+          "usage": {
+            "input_tokens": 3298,
+            "output_tokens": 136,
+            "cost": 0.000138516
+          },
+          "id": "gen-dec-1790562548-0i4QyonZuFuRATL6hcxY",
+          "provider": "TypeSafe"
+        }
+      }
+    },
+    {
+      "paper": {
+        "id": "2609.31394",
+        "title": "InternW0-Δ: A World Action Model Bridging Predictive Dynamics and Actions with 20K+ Hours of Open Data",
+        "summary": "World Action Models (WAMs) jointly model visual dynamics and action generation for generalist robot manipulation. A central challenge is to integrate priors from large-scale pretrained models---including visual dynamics, scene semantics, geometry, and motion---into a unified framework for robot action generation. We introduce InternW0-Δ, a unified WAM pretrained on a heterogeneous corpus that outperforms prior methods across simulation benchmarks and real-robot platforms.\n  InternW0-Δ combines pretrained visual dynamics, scene-level semantics, 4D geometric and motion priors, and action generation within a Mixture-of-Transformers (MoT) framework. A pretrained video expert and an action expert interact under semantic guidance from a frozen VLM, while a pretrained 4D foundation model injects geometric and motion priors through training-only distillation. We further introduce Causal Imprint, which learns future-relevant scene changes from training-only future supervision and provides predictive representations directly to the action expert without future-video rollout at inference.\n  For large-scale joint training, we construct a heterogeneous corpus of robot demonstrations, UMI data, egocentric human demonstrations, and Ego2Robot data, curated and aligned under a common state-action representation. The resulting corpus contains over 20K hours of processed training data, to our knowledge the largest open-source corpus of its kind. We pretrain InternW0-Δ on this corpus and demonstrate strong performance across simulation benchmarks and real-robot platforms. We will open source the training code, model weights, infrastructure, data-processing pipeline, and processed data where licenses permit. Project page: https://internrobotics.github.io/InternW0-Delta/",
+        "authors": [
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8d1",
+            "name": "Xingyu Miao",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8d2",
+            "name": "Zizun Li",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8d3",
+            "name": "Baole Fang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8d4",
+            "name": "Kaiwen Song",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8d5",
+            "name": "Tenghui Wang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8d6",
+            "name": "Hanxue Zhang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8d7",
+            "name": "Yating Wang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8d8",
+            "name": "Xudong Li",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8d9",
+            "name": "Yuping He",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8da",
+            "name": "Xueyuan Wei",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8db",
+            "name": "Chao Gao",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8dc",
+            "name": "Xijie Yang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8dd",
+            "name": "Yingxiang Xu",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8de",
+            "name": "Kerui Ren",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8df",
+            "name": "Wenqi Guo",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8e0",
+            "name": "Jianjun Zhou",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8e1",
+            "name": "Xinzhe Wang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8e2",
+            "name": "Weiguang Zhao",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8e3",
+            "name": "Ni Yang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8e4",
+            "name": "Zetao Cai",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8e5",
+            "name": "Yufei Xue",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8e6",
+            "name": "Hengjie Li",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8e7",
+            "name": "Zeyu He",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8e8",
+            "name": "Yuanzhen Zhou",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8e9",
+            "name": "Rong Fu",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8ea",
+            "name": "Jianyang Zhang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8eb",
+            "name": "Siwei Cui",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8ec",
+            "name": "Fuxian Huang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8ed",
+            "name": "Yunsong Zhou",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8ee",
+            "name": "Xing Gao",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8ef",
+            "name": "Yifei Yao",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8f0",
+            "name": "Qiaojun Yu",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8f1",
+            "name": "Kailin Li",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8f2",
+            "name": "Ming Zhou",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8f3",
+            "name": "Mu Huang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8f4",
+            "name": "Xinyue Li",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8f5",
+            "name": "Wenze Cui",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8f6",
+            "name": "Bingqi Jiang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8f7",
+            "name": "Xueyue Zhu",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8f8",
+            "name": "Junting Dong",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8f9",
+            "name": "Haoyu Guo",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8fa",
+            "name": "Tao Lu",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8fb",
+            "name": "Mulin Yu",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8fc",
+            "name": "Bowen Zhou",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8fd",
+            "name": "Bin Zhao",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8fe",
+            "name": "Tianfan Xue",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a8ff",
+            "name": "Weinan Zhang",
+            "hidden": false
+          },
+          {
+            "_id": "6ab9cbcf356575bf2ab7a900",
+            "name": "Chunhua Shen",
+            "hidden": false
+          }
+        ],
+        "organization": null,
+        "upvotes": 1,
+        "github": null,
+        "hf_url": "https://huggingface.co/papers/2609.31394",
+        "arxiv_url": "https://arxiv.org/abs/2609.31394",
+        "published_at": "2026-09-24T20:00:00.000Z"
+      },
+      "decision": {
+        "model": "openjev",
+        "answers": {
+          "primary_class": {
+            "type": "choice",
+            "choice": "adjacent_inspiration",
+            "probabilities": {
+              "not_recommended": 0.35,
+              "core_self_evolving": 0,
+              "adjacent_inspiration": 0.65
+            },
+            "confidence": 0.48
+          },
+          "value_tier": {
+            "type": "choice",
+            "choice": "new_idea_insight",
+            "probabilities": {
+              "routine_or_unclear": 0,
+              "new_idea_insight": 0.86,
+              "adjacent_inspiration": 0,
+              "algorithm_score_optimization": 0.14
+            },
+            "confidence": 0.81
+          },
+          "triage_reason": {
+            "type": "choice",
+            "choice": "transferable_mechanism",
+            "probabilities": {
+              "direct_self_evolution_loop": 0.03,
+              "off_topic": 0.06,
+              "weak_or_insufficient_evidence": 0.18,
+              "benchmark_score_focus": 0.15,
+              "incremental_optimization": 0.1,
+              "new_system_boundary": 0.13,
+              "transferable_mechanism": 0.35
+            },
+            "confidence": 0.24
+          },
+          "mechanisms": {
+            "type": "choice",
+            "choice": "act_tool_use",
+            "probabilities": {
+              "safety_governance": 0,
+              "memory_context": 0.01,
+              "none_clear": 0.18,
+              "act_tool_use": 0.29,
+              "auto_research": 0,
+              "reasoning_test_time": 0,
+              "rl_policy": 0.25,
+              "harness": 0.27
+            },
+            "confidence": 0.19
+          },
+          "lifecycle": {
+            "type": "choice",
+            "choice": "offline_training",
+            "probabilities": {
+              "online_exploration": 0,
+              "meta_design_search": 0,
+              "none_clear": 0,
+              "distillation_transfer": 0.26,
+              "offline_training": 0.74,
+              "runtime_evolution": 0
+            },
+            "confidence": 0.67
+          },
+          "evidence_quality": {
+            "type": "score",
+            "score": 2.54,
+            "legend": {
+              "0": "Insufficient",
+              "1": "Weak",
+              "2": "Moderate",
+              "3": "Strong",
+              "4": "Very strong"
+            },
+            "probabilities": {
+              "0": 0.02,
+              "1": 0.07,
+              "2": 0.32,
+              "3": 0.54,
+              "4": 0.05
+            },
+            "confidence": 0.52
+          },
+          "transferable_insight": {
+            "type": "noul",
+            "noul": 0.56
+          },
+          "novelty": {
+            "type": "noul",
+            "noul": 0.67
+          },
+          "review": {
+            "type": "choice",
+            "choice": "read_first",
+            "probabilities": {
+              "read_first": 0.91,
+              "skip_for_now": 0.02,
+              "read_if_time": 0.03,
+              "inspect_abstract_only": 0.04
+            },
+            "confidence": 0.89
+          }
+        },
+        "usage": {
+          "input_tokens": 4151,
+          "output_tokens": 488,
+          "cost": 0.000174342
+        },
+        "id": "gen-dec-1790562555-ejgE93nRSI3olgDc78D0",
+        "provider": "TypeSafe"
+      },
+      "verification": {
+        "status": "verified",
+        "evidence": {
+          "status": "available",
+          "url": "https://arxiv.org/html/2609.31394",
+          "sections": [
+            {
+              "heading": "1 Introduction",
+              "excerpt": "World Action Models (WAMs) offer a promising approach to generalist robot manipulation by jointly modeling visual dynamics and robot actions ( Ye et al., 2026b ; Bi et al., 2025 ) . A key motivation behind this formulation is that large-scale video pretraining can provide strong visual and temporal knowledge about how scenes evolve over time. However, the ability to predict future observations does not directly translate into effective robot control. Action generation further requires identifying task-relevant changes, understanding object geometry and motion, and grounding these cues in the current instruction and scene. The central challenge 1 1 1 This challenge aligns with the broader goal of the InternW series: connecting perception, physical prediction, and action under limited sensing and computation ( Chen et al., 2026d ) . is therefore to transfer predictive knowledge from visual dynamics modeling into representations that are directly useful for action generation, without requiring explicit future generation during online control ( Yuan et al., 2026b ) . To face this challenge, we introduce InternW0- Δ \\Delta , a directed world-action architecture that combines predictive visual dynamics, temporal context, and task-conditioned scene semantics for action generation.\nAt its core, a pretrained video expert and an action expert are coupled through a directed Mixture-of-Transformers architecture.\nThe video expert processes a lightweight sparse memory of anchor, recent, and current observations, providing both episode-level context and recent interaction history, while a frozen vision-language model (VLM) supplies task-conditioned scene semantics to the action expert.\nTo make predictive dynamics directly useful for control, Causal Imprint learns future-relevant scene changes from training-only future supervision and makes these representations available to the action expert.\nIn parallel, training-only 4D-aware distillation from a Track4World ( Lu et al., 2026 ) teacher injects geometric and motion priors into the video expert through auxiliary supervision.\nThe directed information flow ensures that neither Causal Imprint nor the action expert takes future obs"
+            },
+            {
+              "heading": "7.1 Evaluation Protocol",
+              "excerpt": "We evaluate InternW0- Δ \\Delta on four simulation benchmarks, including LIBERO-Plus ( Fei et al., 2026 ) , RoboTwin 2.0 ( Chen et al., 2026c ) , EBench ( Gao et al., 2026 ) , and RoboDojo ( Chen et al., 2026b ) . The post-training setup for each benchmark has been described in Section 5.2 . For each benchmark, we follow its official simulator, task definitions, and success criteria without additional adaptation on the evaluation environments. Baseline results are taken from the corresponding papers or public benchmark results under matching evaluation protocols."
+            },
+            {
+              "heading": "7.4.1 Component-Wise Ablations",
+              "excerpt": "We conduct cumulative ablations on LIBERO-Plus to investigate the contribution of the main components in InternW0- Δ \\Delta . All configurations are trained independently from scratch using the same training data, optimization recipe, and evaluation protocol. Therefore, each row in Table 14 corresponds to a separate training run rather than continued training from the preceding configuration. Starting from the baseline, we progressively introduce Sparse Memory Context (SMC), VLM, Causal Imprint (CI), representation alignment, and 4D-aware representation distillation."
+            },
+            {
+              "heading": "7.4.2 Data Source Ablations",
+              "excerpt": "We investigate how different data sources contribute to model performance. We consider four types of data, including raw robot demonstrations, raw human egocentric videos (Ego), human demonstrations converted through our Ego2Robot pipeline (Ego2Robot), and UMI data. All variants use the same InternW0- Δ \\Delta architecture and are pretrained using data from different sources. The subsequent training and evaluation pipelines are kept identical across all settings, allowing us to study the impact of data composition under a controlled setup. Across the evaluated settings, as shown in Table 16 and Table 17 , robot demonstration data provides the strongest and most consistent benefit. On LIBERO-Plus, robot pretraining improves the overall success rate from 78.59% to 83.73%. The effect is particularly clear on RoboTwin 2.0 under the Clean2Random setting, where the success rate increases from 4.38% to 32.34%, indicating a substantial gain in robustness to visual and environmental variations. In comparison, raw egocentric video brings only a modest improvement on the current benchmarks, increasing LIBERO-Plus performance to 80.45% and RoboTwin Clean2Random from 2.80% to 3.13%. Ego2Robot data yields a larger gain, reaching 81.86% on LIBERO-Plus and 6.66% on RoboTwin Clean2Random. UMI data provides an even stronger improvement, achieving 83.24% on LIBERO-Plus and increasing RoboTwin Clean2Random from 2.80% to 13.90%. Overall, these results suggest that human data become more effective when their observation and action spaces are better aligned with those of robots. The results are specific to our current data scale and evaluation setting, with both LIBERO-Plus and RoboTwin primarily focusing on gripper-based manipulation. Under this setting, raw egocentric video provides limited gains in task success rate, but this does not rule out stronger benefits at a larger scale or on tasks that are more closely aligned with human hand-object interaction. In particular, human demonstrations may be more useful for dexterous manipulation, where fine-grained contact patterns and hand motions are less well covered by standard robot datasets. Moreover, our current evaluation only measur"
+            }
+          ]
+        },
+        "decision": {
+          "model": "openjev",
+          "answers": {
+            "novelty_level": {
+              "type": "choice",
+              "choice": "new_mechanism",
+              "probabilities": {
+                "uncertain": 0.25,
+                "new_mechanism": 0.69,
+                "incremental": 0.06
+              },
+              "confidence": 0.53
+            },
+            "comparison": {
+              "type": "choice",
+              "choice": "specific",
+              "probabilities": {
+                "generic": 0.19,
+                "specific": 0.73,
+                "missing": 0.08
+              },
+              "confidence": 0.59
+            },
+            "evaluation": {
+              "type": "choice",
+              "choice": "cross_domain_or_ablation",
+              "probabilities": {
+                "benchmark_only": 0,
+                "insufficient": 0,
+                "cross_domain_or_ablation": 1
+              },
+              "confidence": 1
+            }
+          },
+          "usage": {
+            "input_tokens": 2223,
+            "output_tokens": 136,
+            "cost": 9.3366e-05
+          },
+          "id": "gen-dec-1790562569-BU0yJsnLifETKDjSrqkE",
+          "provider": "TypeSafe"
+        }
+      }
+    },
+    {
+      "paper": {
+        "id": "2609.28660",
+        "title": "Morphometric Imitation: From Morphology and Contact Aware Hand Retargeting to Sim-to-Real Visuomotor Policy",
+        "summary": "Human hand-object interactions (HOIs) provide a rich source of demonstrations for dexterous manipulation, but learning directly from them presents challenges in bridging morphology gaps, ensuring dynamical feasibility, and sim-to-real deployment. We present Morphometric Imitation, a three-stage framework that transforms reconstructed HOIs into zero-shot sim-to-real visuomotor policies. First, morphometric optimization (MMO) kinematically retargets human motion across hand morphologies while preserving demonstrated contacts. Second, residual reinforcement learning (RL) refines the kinematic reference using object pose and contact information from the human motion to produce dynamically feasible robot demonstrations. Third, these demonstrations are distilled into visuomotor policies. Across three robot hands and ten HOIs, MMO improves contact F1 over the strongest of five baselines by at least 8 points for every hand, while also improving the success rate of downstream dynamic retargeting by as much as 35 points. Ablations on the residual RL show complementary benefits from using object pose and contact information. Finally, the visuomotor policies achieve 89.3% zero-shot success in 300 real-world trials on 30 objects. Project page: https://morphometricimitation.github.io{this https URL}",
+        "authors": [
+          {
+            "_id": "6ab72011356575bf2ab7a30a",
+            "name": "Tara Sadjadpour",
+            "hidden": false
+          },
+          {
+            "_id": "6ab72011356575bf2ab7a30b",
+            "name": "Siming He",
+            "hidden": false
+          },
+          {
+            "_id": "6ab72011356575bf2ab7a30c",
+            "name": "C. K. Wolfe",
+            "hidden": false
+          },
+          {
+            "_id": "6ab72011356575bf2ab7a30d",
+            "name": "Haozhi Qi",
+            "hidden": false
+          },
+          {
+            "_id": "6ab72011356575bf2ab7a30e",
+            "name": "Lea Wilken",
+            "hidden": false
+          },
+          {
+            "_id": "6ab72011356575bf2ab7a30f",
+            "name": "S. Shankar Sastry",
+            "hidden": false
+          },
+          {
+            "_id": "6ab72011356575bf2ab7a310",
+            "name": "Claire Tomlin",
+            "hidden": false
+          },
+          {
+            "_id": "6ab72011356575bf2ab7a311",
+            "name": "Jitendra Malik",
+            "hidden": false
+          }
+        ],
+        "organization": {
+          "_id": "61f20a9ce108f2cba2dc0730",
+          "name": "Berkeley",
+          "fullname": "UC Berkeley",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/61ac8f8a00d01045fca0ad2f/0FjsTg2txEZZ4dEgmMnQL.png"
+        },
+        "upvotes": 1,
+        "github": "https://github.com/tsadja/morphometric",
+        "hf_url": "https://huggingface.co/papers/2609.28660",
+        "arxiv_url": "https://arxiv.org/abs/2609.28660",
+        "published_at": "2026-09-22T20:00:00.000Z"
+      },
+      "decision": {
+        "model": "openjev",
+        "answers": {
+          "primary_class": {
+            "type": "choice",
+            "choice": "adjacent_inspiration",
+            "probabilities": {
+              "adjacent_inspiration": 0.84,
+              "not_recommended": 0.16,
+              "core_self_evolving": 0
+            },
+            "confidence": 0.76
+          },
+          "value_tier": {
+            "type": "choice",
+            "choice": "new_idea_insight",
+            "probabilities": {
+              "adjacent_inspiration": 0,
+              "algorithm_score_optimization": 0.08,
+              "routine_or_unclear": 0,
+              "new_idea_insight": 0.92
+            },
+            "confidence": 0.89
+          },
+          "triage_reason": {
+            "type": "choice",
+            "choice": "transferable_mechanism",
+            "probabilities": {
+              "new_system_boundary": 0.04,
+              "off_topic": 0.07,
+              "direct_self_evolution_loop": 0.01,
+              "weak_or_insufficient_evidence": 0.05,
+              "incremental_optimization": 0.14,
+              "transferable_mechanism": 0.48,
+              "benchmark_score_focus": 0.21
+            },
+            "confidence": 0.39
+          },
+          "mechanisms": {
+            "type": "choice",
+            "choice": "rl_policy",
+            "probabilities": {
+              "rl_policy": 1,
+              "none_clear": 0,
+              "reasoning_test_time": 0,
+              "act_tool_use": 0,
+              "memory_context": 0,
+              "auto_research": 0,
+              "harness": 0,
+              "safety_governance": 0
+            },
+            "confidence": 1
+          },
+          "lifecycle": {
+            "type": "choice",
+            "choice": "distillation_transfer",
+            "probabilities": {
+              "none_clear": 0.02,
+              "meta_design_search": 0,
+              "offline_training": 0.08,
+              "online_exploration": 0.07,
+              "runtime_evolution": 0,
+              "distillation_transfer": 0.83
+            },
+            "confidence": 0.79
+          },
+          "evidence_quality": {
+            "type": "score",
+            "score": 3.3,
+            "legend": {
+              "0": "Insufficient",
+              "1": "Weak",
+              "2": "Moderate",
+              "3": "Strong",
+              "4": "Very strong"
+            },
+            "probabilities": {
+              "0": 0.02,
+              "1": 0.01,
+              "2": 0.03,
+              "3": 0.55,
+              "4": 0.39
+            },
+            "confidence": 0.6
+          },
+          "transferable_insight": {
+            "type": "noul",
+            "noul": 0.52
+          },
+          "novelty": {
+            "type": "noul",
+            "noul": 0.65
+          },
+          "review": {
+            "type": "choice",
+            "choice": "read_first",
+            "probabilities": {
+              "read_first": 0.96,
+              "skip_for_now": 0.01,
+              "read_if_time": 0.01,
+              "inspect_abstract_only": 0.02
+            },
+            "confidence": 0.94
+          }
+        },
+        "usage": {
+          "input_tokens": 2446,
+          "output_tokens": 489,
+          "cost": 0.000102732
+        },
+        "id": "gen-dec-1790562576-fdo49WLwLGPQb4mOkHYn",
+        "provider": "TypeSafe"
+      },
+      "verification": {
+        "status": "verified",
+        "evidence": {
+          "status": "available",
+          "url": "https://arxiv.org/html/2609.28660",
+          "sections": [
+            {
+              "heading": "I Introduction",
+              "excerpt": "Human motion data has gained increasing popularity as a data source for robot manipulation.\nWhile teleoperation provides high-quality robot demonstrations, it can be limited by cost, time to collect, and expert data collector availability.\nConsequently, recent works have explored human motion data as a means of reducing the amount of teleoperated data required for robot learning. Some approaches use a combination of 2D human motion from monocular video for pretraining, followed by post-training with teleoperated robot demonstrations [ 1 , 2 ] . Others apply 3D reconstruction to monocular video and use the resulting human hand-object trajectories as the source of demonstration data. The typical pipeline for using 3D human motion data consists of three stages: kinematic retargeting of the reconstructed human motion to the target robot [ 3 , 4 , 5 , 6 , 7 , 8 ] , dynamic retargeting into physically feasible robot demonstrations [ 9 , 10 , 11 , 12 , 13 , 14 , 6 , 7 , 8 , 15 ] , and distillation of these demonstrations into a visuomotor policy [ 10 , 12 , 15 ] . In this work, we introduce Morphometric Imitation , a three-stage framework that transforms reconstructed human hand-object interactions into visuomotor imitation learning policies. The first stage is morphometric optimization (MMO), a novel kinematic retargeting method that accounts for differences in human and robot hand morphology while preserving the demonstrated hand-object contacts. We then perform dynamic retargeting with residual reinforcement learning (RL) in simulation, jointly leveraging object pose and contact information from the reference motion. The residual policy adapts the kinematic reference to produce dynamically feasible trajectories with stable contact dynamics and reliable collision avoidance. Finally, we use these trajectories as demonstrations to train a visuomotor policy via imitation learning in simulation for zero-shot sim-to-real deployment. Realizing the benefits of transferring human hand-object interactions to robotic hands presents unique challenges at each stage. During kinematic retargeting, differences in human and robot hand morphology and size make perfect geometric corre"
+            },
+            {
+              "heading": "VII Experiments",
+              "excerpt": "We evaluate Morphometric Imitation to answer four questions: Does MMO better preserve demonstrated hand-object contacts than prior kinematic retargeting methods across robot hand embodiments? Do the kinematic references from MMO lead to better downstream dynamic retargeting? Are both object pose and contact information important for successful dynamic retargeting? How robustly do the resulting visuomotor policies transfer zero-shot to real-world objects with diverse geometries and physical properties across randomized poses within a 10 ​ cm × 10 10\\,\\text{cm}\\times 10 cm region? We first describe the setup (Section VII-A ), evaluation metrics (Section VII-B ), and baselines (Section VII-C ). We then present the results and analysis for each of these questions in Sections VII-D – VII-F ."
+            },
+            {
+              "heading": "VII-A Experimental Setup",
+              "excerpt": "Simulation Setup. We use ten GRAB [ 17 ] hand-object trajectories (alarm clock, apple, bowl, large cube, cup, flashlight, hammer, lightbulb, torus, and wineglass) and three robot hands with three, four, and five fingers: Dex3, Allegro, and Sharpa. Each trajectory begins with the object resting on a table, followed by the human reaching, grasping, and lifting it. Some trajectories add task-specific object motion, such as bringing the cup toward the mouth, raising the wineglass in a toast, reorienting the flashlight to point forward, or rotating the hammer so that its head faces downward. Real-World Setup. We deploy one visuomotor policy per object category on a KUKA iiwa14 arm with a Sharpa Wave hand and an Intel RealSense L515 LiDAR camera. The robot operates directly over a hardwood table without a compliant surface, making table collisions a highly consequential failure mode. Each category is tested on three physical instances (Figure 6 ) that vary in shape, size, mass, center of mass, friction, and LiDAR observability. The transparent wineglass is invisible to the LiDAR camera, so we place ping pong balls in its bowl for partial observability (examples in the Supplemental Material). Each instance is tested from 10 initial poses randomized within a 10 ​ cm × 10 10\\,\\text{cm}\\times 10 cm region and ± 15 ∘ \\pm 15^{\\circ} yaw, yielding 30 trials per category and 300 total."
+            },
+            {
+              "heading": "VII-B Evaluation Metrics",
+              "excerpt": "Kinematic Metrics. We measure how well the retargeted hand recovers the demonstrated contact geometry using location-aware F1 and contact patch distance. Our location-aware contact metrics require the robot to reproduce not only which hand part contacts the object, but also where on the object that contact occurs. Precision and recall for the F1 score are reported in the Supplemental Material. For one trajectory, let t t index frames, k k index robot fingers and the palm, and x v x_{v} denote the position of vertex v v on the object mesh, with all geometry expressed in object coordinates. Let d t ​ v H d^{H}_{tv} be the unsigned distance from x v x_{v} to the MANO hand surface, d t ​ k ​ v B d^{B}_{tkv} its unsigned distance to the collision shapes of robot part k k , h t ​ v ∗ h^{*}_{tv} the human hand part closest to x v x_{v} , and g g the fixed mapping from human parts to robot parts. At contact tolerance τ \\tau , the desired human and predicted robot contact indicators are H t ​ k ​ v = 𝟏 [ d t ​ v H ≤ τ ] ⋅ 𝟏 [ g ( h t ​ v ∗ ) = k ] H_{tkv}=\\mathbf{1}[d^{H}_{tv}\\leq\\tau]\\cdot\\mathbf{1}[g(h^{*}_{tv})=k] and B t ​ k ​ v = 𝟏 [ d t ​ k ​ v B ≤ τ ] B_{tkv}=\\mathbf{1}[d^{B}_{tkv}\\leq\\tau] , so a correct robot contact must agree with the demonstration in frame, object location, and hand part. Weighting each vertex by its represented surface area a v a_{v} , since object meshes are nonuniformly tessellated, we accumulate contact area over all frames and parts: from which precision, recall, and F1 score metrics follow using standard formulae. Precision penalizes robot contact outside the demonstrated patch, including contact in frames where the human makes none; recall penalizes demonstrated contact the robot fails to recover; and F1, the primary contact score, penalizes both. A method using hard constraints may fail to produce an output for a sequence, so averaging only over its successful outputs would inflate its scores. Thus, we report failure-adjusted scores: each metric is computed per sequence, set to zero for sequences the method fails to retarget, and averaged over all attempted sequences for each hand. Contact patch distance measures spatial error continu"
+            },
+            {
+              "heading": "VII-D Kinematic Retargeting Evaluation",
+              "excerpt": "Contact Preservation. Table II compares MMO with the five baselines across ten demonstrations per hand. MMO achieves the highest location-aware F1 and lowest contact patch distance for all three hands. At 5 , mm 5,\\mathrm{mm} , it exceeds the strongest baseline in F1 by 8.3 8.3 , 27.8 27.8 , and 10.5 10.5 percentage points for Allegro, Dex3, and Sharpa, respectively. It also reduces mean patch distance to 9.1 9.1 , 7.5 7.5 , and 9.7 ​ mm 9.7\\,\\mathrm{mm} , compared with 18.7 18.7 , 18.9 18.9 , and 10.7 ​ mm 10.7\\,\\mathrm{mm} for the respective strongest baselines. Together, the F1 and patch distance results show that MMO more faithfully preserves the demonstrated contact geometry across robot hand embodiments. Qualitative Analysis. Figure 5 illustrates why hand-object proximity alone is insufficient to preserve the demonstrated interaction. For the wineglass, MMO recovers the human hand placement and wrap-around grasp, while the baselines either miss portions of the grasp region or place fingers inside the glass. For the bowl, MMO preserves the demonstrated finger arrangement and shallow thumb placement at the rim, whereas the baselines alter which fingers contact the object and where. At these frames, MMO achieves 38.5 % 38.5\\% and 43.0 % 43.0\\% F1, respectively, higher than all baselines. Some geometric overlap remains in the reference itself; for example, the reconstructed human thumb penetrates the bowl by 5.8 ​ mm 5.8\\,\\mathrm{mm} . Such residual geometric errors are addressed by the subsequent physics-based dynamic retargeting stage."
+            },
+            {
+              "heading": "VII-E Dynamic Retargeting Evaluation",
+              "excerpt": "We evaluate (1) how the choice of kinematic reference affects downstream dynamic retargeting and (2) the roles of object pose and contact information in our residual RL formulation. Each policy is evaluated over 2048 simulated rollouts per object category, with results averaged across the ten categories.\nFigure 4 shows rollouts of the resulting policies on all three hands. Effect of Kinematic Reference. Table III compares the same residual RL formulation initialized from each kinematic retargeting method. MMO references yield the highest SR and lowest C-ADD across all three hands. SR reaches 82.5 % 82.5\\% , 69.9 % 69.9\\% , and 91.8 % 91.8\\% for Dex3, Allegro, and Sharpa, compared with 53.2 % 53.2\\% , 68.2 % 68.2\\% , and 56.5 % 56.5\\% for the strongest baseline on each hand. C-ADD similarly improves from 5.36 5.36 , 6.26 6.26 , and 5.76 , cm 5.76,\\mathrm{cm} to 4.10 4.10 , 5.01 5.01 , and 3.41 ​ cm 3.41\\,\\mathrm{cm} . Because the residual RL formulation and training hyperparameters are held fixed across methods, these results isolate the effect of the kinematic reference. Combined with the improved contact preservation in Table II , they show that the benefits of MMO extend beyond kinematic metrics to downstream physically feasible task execution. Object and Contact Ablation. We ablate object pose and contact information from the observations, rewards, and termination conditions while keeping the MMO references fixed. The results are shown in Table IV . Using both sources achieves the highest SR and lowest C-ADD across all three hands. Removing contact information reduces SR from 82.5 % 82.5\\% , 69.9 % 69.9\\% , and 91.8 % 91.8\\% to 51.2 % 51.2\\% , 47.6 % 47.6\\% , and 76.6 % 76.6\\% for Dex3, Allegro, and Sharpa, respectively; removing object pose information further reduces it to 42.5 % 42.5\\% , 41.6 % 41.6\\% , and 54.3 % 54.3\\% . The two sources play complementary roles. With object pose information alone, policies better track the object trajectory but deviate substantially from the demonstrated grasp geometry. With contact information alone, policies better preserve the demonstrated interaction but track the object trajectory less accurately and succeed less of"
+            },
+            {
+              "heading": "VII-F Sim-to-Real Visuomotor Policy Evaluation",
+              "excerpt": "Table V reports the success rate of the privileged teacher and visuomotor student in simulation, followed by zero-shot deployment of the student on hardware. Distillation in Simulation. We evaluate the teacher and student on unseen simulation rollouts with newly sampled object poses, scales, and physical properties, using 2,048 rollouts per category for the teacher and 64 for the student. The student retains the teacher’s performance, achieving a macro-average SR of 93.8 % 93.8\\% compared with 91.8 % 91.8\\% for the teacher and matching or exceeding it in seven of ten categories. The largest drops occur for the cube ( 92.1 % → 76.6 % 92.1\\%\\to 76.6\\% ) and wineglass ( 92.2 % → 85.9 % 92.2\\%\\to 85.9\\% ). Unlike the teacher, which observes randomized object properties as privileged state, the student must infer their effects from point clouds and proprioception. Additional evaluation details are provided in the Supplemental Material. Zero-Shot Sim-to-Real. Across 300 hardware trials (Figure 2 ), the visuomotor policies achieve 89.3 % 89.3\\% zero-shot success, 4.4 4.4 percentage points below the simulated student, without using real-world training data. Every category achieves at least 80 % 80\\% SR, with the lightbulb succeeding in all 30 trials. Collision avoidance also transfers to hardware: the policies successfully grasp objects lying flat on the rigid table, including the hammer, flashlight, and lightbulb, without hard table collisions. The partially observed wineglass achieves 93.3 % 93.3\\% SR, demonstrating robustness to incomplete point-cloud observations. Note that the transparent wineglass is invisible to the LiDAR camera, so we place ping pong balls in its bowl for partial observability Failure Modes. We observed no failures due to hard collisions with the table. Instead, failures primarily arose from two other forms of inaccurate spatial reasoning. First, object localization errors were strongly dependent on the object’s position within the randomized 10 ​ cm × 10 10\\,\\text{cm}\\times 10 cm region; for some object categories, failures were concentrated entirely within particular regions of the workspace. To further characterize these pose-dependent failur"
+            },
+            {
+              "heading": "VIII Conclusion",
+              "excerpt": "We present Morphometric Imitation , a framework that transforms reconstructed human hand-object interactions into zero-shot sim-to-real visuomotor policies. Our framework combines MMO for morphology- and contact-aware kinematic retargeting, residual RL that leverages object pose and contact information for dynamic retargeting, and point-cloud policy distillation for real-world deployment. Our experiments across three-, four-, and five-fingered hands lead to three main conclusions. First, explicitly accounting for morphology and contact during kinematic retargeting produces more faithful references: MMO achieves the highest contact F1 and lowest patch distance across all three hands, which in turn improves downstream task success, object tracking, and contact preservation under the same residual RL formulation. Second, object pose and contact information play complementary roles in dynamic retargeting: object pose guides trajectory tracking and task completion, while contact information promotes preservation of the demonstrated interaction, and combining both yields the strongest performance. Third, these gains carry over to physical experiments, where the distilled policies achieve 89.3 % 89.3\\% zero-shot success while avoiding hard collisions with the rigid table. The ranking among hands follows the embodiment gap to the human hand, while MMO improves over the strongest baseline within each hand using the same hyperparameters throughout. Several limitations motivate future work. We currently train separate residual RL and visuomotor policies for each object category and evaluate hardware deployment on a single arm-hand system. Distilling demonstrations across categories into a unified multi-task policy and deploying on the other hands are natural next steps.\nFurthermore, our demonstrations come from ten motion capture trajectories, whereas the scalability argument for human motion data rests on reconstructions from monocular video; since MMO operates on hand and object meshes and runs at 180 frames per second, extending the framework to such reconstructions, including bimanual interactions, is a promising direction.\nFinally, improving generalization to a broade"
+            }
+          ]
+        },
+        "decision": {
+          "model": "openjev",
+          "answers": {
+            "novelty_level": {
+              "type": "choice",
+              "choice": "new_mechanism",
+              "probabilities": {
+                "incremental": 0.15,
+                "uncertain": 0.27,
+                "new_mechanism": 0.58
+              },
+              "confidence": 0.36
+            },
+            "comparison": {
+              "type": "choice",
+              "choice": "specific",
+              "probabilities": {
+                "generic": 0.01,
+                "missing": 0,
+                "specific": 0.99
+              },
+              "confidence": 0.99
+            },
+            "evaluation": {
+              "type": "choice",
+              "choice": "cross_domain_or_ablation",
+              "probabilities": {
+                "benchmark_only": 0,
+                "cross_domain_or_ablation": 1,
+                "insufficient": 0
+              },
+              "confidence": 1
+            }
+          },
+          "usage": {
+            "input_tokens": 4577,
+            "output_tokens": 136,
+            "cost": 0.000192234
+          },
+          "id": "gen-dec-1790562590-ZkdSw4EFTMi84ZKKuaEt",
+          "provider": "TypeSafe"
+        }
+      }
+    },
+    {
+      "paper": {
+        "id": "2609.29050",
+        "title": "SLCA-GRPO: Resolving Cross-Segment Credit Misattribution in Tool-Calling RL",
+        "summary": "Tool-calling agents produce heterogeneous outputs, interleaving structured tool invocations with user-facing natural language summaries. This output heterogeneity presents a structural failure mode in standard on-policy Reinforcement Learning (RL): algorithms like GRPO indiscriminately broadcast a homogeneous trajectory-level scalar advantage to all tokens. Consequently, gradient noise from summary generation leaks into tool-decision tokens, causing cross-segment credit misattribution and brittle optimization. In this work, we propose SLCA-GRPO, a framework incorporating Segment-Locked Credit Assignment (SLCA). To enable scalable exploration without costly real APIs and stable training, we first construct the Schema-Guided LLM Simulator (SGLS) as foundational training infrastructure. Building on this, SLCA decouples advantage estimation at the structural segment level within a single group of rollouts, without requiring additional rollouts from intermediate states. Supported by Hierarchical Rewards (HierR), SLCA routes execution advantages to tool tokens and preference advantages to summary tokens, eliminating advantage contamination (the dominant cross-segment credit misattribution channel) within each policy update. On a 7B backbone, SLCA-GRPO accelerates convergence and outperforms standard GRPO, ToolPO, and RLTR by +2.53 pp on in-domain evaluation, +1.36 pp on the Berkeley Function-Calling Leaderboard (BFCL), and +9.15 pp on τ^2-Bench under the same training budgets, achieving higher accuracy with reduced tool redundancy and costs.",
+        "authors": [
+          {
+            "_id": "6ab6a974356575bf2ab7a263",
+            "user": {
+              "_id": "65f974fc55d5ad897260fc67",
+              "avatarUrl": "https://cdn-avatars.huggingface.co/v1/production/uploads/no-auth/Sa3flUvGuzwnMvkw4jvt2.png",
+              "isPro": false,
+              "fullname": "Yan Zhan",
+              "user": "YanZhanPKU",
+              "type": "user",
+              "name": "YanZhanPKU"
+            },
+            "name": "Yan Zhan",
+            "status": "claimed_verified",
+            "statusLastChangedAt": "2026-09-26T00:45:05.079Z",
+            "hidden": false
+          },
+          {
+            "_id": "6ab6a974356575bf2ab7a264",
+            "name": "Shaobo Liu",
+            "hidden": false
+          },
+          {
+            "_id": "6ab6a974356575bf2ab7a265",
+            "name": "Qiunan Liu",
+            "hidden": false
+          },
+          {
+            "_id": "6ab6a974356575bf2ab7a266",
+            "name": "Yuanjun Shi",
+            "hidden": false
+          },
+          {
+            "_id": "6ab6a974356575bf2ab7a267",
+            "name": "Siqi Xu",
+            "hidden": false
+          },
+          {
+            "_id": "6ab6a974356575bf2ab7a268",
+            "name": "WeiYi Hou",
+            "hidden": false
+          },
+          {
+            "_id": "6ab6a974356575bf2ab7a269",
+            "name": "Xiang Xu",
+            "hidden": false
+          },
+          {
+            "_id": "6ab6a974356575bf2ab7a26a",
+            "name": "Zekang Li",
+            "hidden": false
+          },
+          {
+            "_id": "6ab6a974356575bf2ab7a26b",
+            "name": "Weizhou Pan",
+            "hidden": false
+          },
+          {
+            "_id": "6ab6a974356575bf2ab7a26c",
+            "name": "Jiahong Yan",
+            "hidden": false
+          }
+        ],
+        "organization": {
+          "_id": "66543b6e420092799d2f625c",
+          "name": "tencent",
+          "fullname": "Tencent",
+          "avatar": "https://cdn-avatars.huggingface.co/v1/production/uploads/5dd96eb166059660ed1ee413/Lp3m-XLpjQGwBItlvn69q.png"
+        },
+        "upvotes": 0,
+        "github": "https://github.com/SLCA-GRPO/SLCA-GRPO",
+        "hf_url": "https://huggingface.co/papers/2609.29050",
+        "arxiv_url": "https://arxiv.org/abs/2609.29050",
+        "published_at": "2026-09-23T20:00:00.000Z"
+      },
+      "decision": {
+        "model": "openjev",
+        "answers": {
+          "primary_class": {
+            "type": "choice",
+            "choice": "adjacent_inspiration",
+            "probabilities": {
+              "not_recommended": 0.03,
+              "core_self_evolving": 0.09,
+              "adjacent_inspiration": 0.88
+            },
+            "confidence": 0.82
+          },
+          "value_tier": {
+            "type": "choice",
+            "choice": "new_idea_insight",
+            "probabilities": {
+              "new_idea_insight": 0.93,
+              "routine_or_unclear": 0,
+              "algorithm_score_optimization": 0.07,
+              "adjacent_inspiration": 0
+            },
+            "confidence": 0.9
+          },
+          "triage_reason": {
+            "type": "choice",
+            "choice": "transferable_mechanism",
+            "probabilities": {
+              "incremental_optimization": 0.42,
+              "new_system_boundary": 0.02,
+              "weak_or_insufficient_evidence": 0.04,
+              "benchmark_score_focus": 0.06,
+              "direct_self_evolution_loop": 0.02,
+              "transferable_mechanism": 0.43,
+              "off_topic": 0.01
+            },
+            "confidence": 0.34
+          },
+          "mechanisms": {
+            "type": "choice",
+            "choice": "rl_policy",
+            "probabilities": {
+              "memory_context": 0,
+              "act_tool_use": 0,
+              "safety_governance": 0,
+              "reasoning_test_time": 0,
+              "auto_research": 0,
+              "rl_policy": 1,
+              "none_clear": 0,
+              "harness": 0
+            },
+            "confidence": 1
+          },
+          "lifecycle": {
+            "type": "choice",
+            "choice": "online_exploration",
+            "probabilities": {
+              "runtime_evolution": 0,
+              "none_clear": 0,
+              "meta_design_search": 0,
+              "offline_training": 0,
+              "online_exploration": 1,
+              "distillation_transfer": 0
+            },
+            "confidence": 1
+          },
+          "evidence_quality": {
+            "type": "score",
+            "score": 3.03,
+            "legend": {
+              "0": "Insufficient",
+              "1": "Weak",
+              "2": "Moderate",
+              "3": "Strong",
+              "4": "Very strong"
+            },
+            "probabilities": {
+              "0": 0.01,
+              "1": 0.01,
+              "2": 0.08,
+              "3": 0.75,
+              "4": 0.15
+            },
+            "confidence": 0.76
+          },
+          "transferable_insight": {
+            "type": "noul",
+            "noul": 0.74
+          },
+          "novelty": {
+            "type": "noul",
+            "noul": 0.72
+          },
+          "review": {
+            "type": "choice",
+            "choice": "read_first",
+            "probabilities": {
+              "inspect_abstract_only": 0.03,
+              "skip_for_now": 0.01,
+              "read_first": 0.94,
+              "read_if_time": 0.02
+            },
+            "confidence": 0.92
+          }
+        },
+        "usage": {
+          "input_tokens": 2755,
+          "output_tokens": 490,
+          "cost": 0.00011571
+        },
+        "id": "gen-dec-1790562597-xhakPjjAjwqzptbvIylQ",
+        "provider": "TypeSafe"
+      },
+      "verification": {
+        "status": "verified",
+        "evidence": {
+          "status": "available",
+          "url": "https://arxiv.org/html/2609.29050",
+          "sections": [
+            {
+              "heading": "1  \nIntroduction",
+              "excerpt": "The evolution of Large Language Models (LLMs) from passive chatbots to active agents hinges on their ability to plan and execute actions via external tools ( Qin et al., 2024 ; Schick et al., 2023 ; Yao et al., 2023 ; Patil et al., 2024 ) . Although Supervised Fine-Tuning (SFT) establishes a strong initialization, it depends on imitating fixed patterns and is fragile against the large, changing namespaces of ecosystems such as the Model Context Protocol (MCP) ( Hou et al., 2026 ) . To transcend mimicry, post-training via on-policy Reinforcement Learning (RL) is essential ( Ouyang et al., 2022 ; Schulman et al., 2017 ; Yu et al., 2025 ) . Tool-calling resembles reasoning tasks in that trajectories can contain intermediate work before a final answer, but it adds externally verifiable boundaries: structured API calls, environment-injected observations, and schema constraints. These boundaries naturally decompose a rollout into y = [ y tool ⊕ y sum ] y=\\big[{\\color[rgb]{0.418,0.3711,0.8203}y_{\\mathrm{tool}}}\\oplus{\\color[rgb]{0.3711,0.6406,0.3047}y_{\\mathrm{sum}}}\\big] , where y tool {\\color[rgb]{0.418,0.3711,0.8203}y_{\\mathrm{tool}}} encodes the operational trajectory (reasoning traces interleaved with structured tool calls), and y sum {\\color[rgb]{0.3711,0.6406,0.3047}y_{\\mathrm{sum}}} constitutes the user-facing natural language response. Applying standard RL algorithms to this two-segment structure reveals a fundamental mismatch. Dominant approaches such as Group Relative Policy Optimization (GRPO) ( Guo et al., 2025a ) broadcast a unified trajectory-level advantage to all tokens; even Process Reward Models (PRMs) aggregate signals ( R total = R tool + R sum R_{\\text{total}}={\\color[rgb]{0.418,0.3711,0.8203}R_{\\mathrm{tool}}}+{\\color[rgb]{0.3711,0.6406,0.3047}R_{\\mathrm{sum}}} ) before advantage estimation. We argue that this Global Signal Conflation is a structural failure mode: summary-reward variation can enter the tool-token advantage, producing Cross-Segment Credit Misattribution . In sign-conflict regimes, a failed tool call can be reinforced when followed by a correct summary, while a correct tool trajectory can be penalized when followed by an incorrect "
+            },
+            {
+              "heading": "4  \nExperiments",
+              "excerpt": "Our experiments proceed in three parts: we examine the diagnosed failure under unified or additive credit signals, test transfer across schemas and long-horizon interaction, and ablate SLCA, SGLS, and HierR."
+            },
+            {
+              "heading": "4.3 \nAblation Studies",
+              "excerpt": "Finally, the ablations target the method’s three design requirements: routing, scalable simulation, and dense segment feedback. Qwen2.5-7B-Instruct is used as the primary testbed (Table 2 ), with detailed ablation across scales in App. D.10 . The matched “w/o SLCA” condition compares the unified and segment-locked estimators under fixed reward definitions, so it measures the combined estimator change rather than either operation in isolation; the unified reward ratio sweep in App. D.8 examines this distinction directly. Together, these ablations test the three design requirements in Section 3 : routing addresses the cross-segment path, SGLS stabilizes schema-grounded exploration, and HierR supplies dense execution feedback. The summary advantage ablation and the 7B support control are reported in Apps. D.2 and D.9 ."
+            },
+            {
+              "heading": "5  \nConclusion",
+              "excerpt": "We identified Global Signal Conflation as a structural pathology in tool-calling RL and proposed SLCA -GRPO , which decouples advantage estimation at the segment level. Across three backbones, SLCA -GRPO improves success by +2.53 pp on 7B in-domain Toucan, +1.36 pp on BFCL, and +9.15 pp on τ 2 \\tau^{2} -Bench. The corresponding matched gaps are +2.35/+0.40/+1.09 pp on 3B and +2.05/+3.35/+10.03 pp on 8B for Toucan, BFCL, and τ 2 \\tau^{2} -Bench, respectively. The Toucan breakdown shows higher mean Process and Success for SLCA -GRPO across the reported backbones, while higher Summary scores for matched GRPO on 3B and 8B do not translate into higher task Success. Controlled comparisons and ablations support the role of segment-level routing, and the reward-swap check shows that the improvement is not tied to a single reward formulation. SLCA is complementary to temporal credit-assignment methods."
+            },
+            {
+              "heading": "6  \nLimitations",
+              "excerpt": "Segment decomposition. SLCA assumes a clear boundary between tool calls and free-form text. Settings without one, such as inline code generation, would require learned segmentation. Reward and bias. S process S_{\\text{process}} relies on matching to gold trajectories and may under-reward alternative valid tool sequences when multiple API plans solve the same request. The execution-based judge check in App. D.12 provides a complementary reward formulation. Toucan strict Success@0.9 thresholds this score instead of using an independent task outcome label. A ^ sum {\\color[rgb]{0.3711,0.6406,0.3047}\\hat{A}^{\\mathrm{sum}}} inherits a grouping bias in summary tokens (App. A.2 ); explicit subgrouping would shrink group size exponentially. Intra-tool temporal credit. SLCA routes one scalar A ^ tool {\\color[rgb]{0.418,0.3711,0.8203}\\hat{A}^{\\mathrm{tool}}} to every tool token, so it does not distinguish a correct Action 1 from a failing Action 2. This temporal issue is separate from cross-segment credit. A combination with VinePPO/GiGPO/SPO remains untested. Scale and simulation. Experiments use models up to 8B with SGLS. Larger-scale training and direct real-API comparisons remain future work."
+            },
+            {
+              "heading": "A.6 \nSGLS Scope and Evaluation",
+              "excerpt": "SGLS is a schema-guided simulator: it preserves tool names, required fields, and response structure while allowing concrete observations to differ from those of a live API. We evaluate this structural alignment empirically through the w/o SGLS ablation, the cross-domain benchmarks, and the alignment examples in App. C.3 ."
+            },
+            {
+              "heading": "C.5 \nEvaluation Protocols",
+              "excerpt": "For full reproducibility, we document the complete evaluation protocol for each benchmark, including software versions, model configurations, and scoring logic. The matched GRPO and SLCA -GRPO rows share the benchmark protocol; the ToolPO and RLTR choices are listed in App. C.4 ."
+            },
+            {
+              "heading": "D.2 \nSummary Advantage Ablation",
+              "excerpt": "We isolate the learned summary-reward branch while keeping the omission safeguard\nunchanged. Let 𝒪 \\mathcal{O} denote rollouts that trigger the omission guard.\nAfter computing the ordinary group-normalized summary advantages, we set A ^ i sum = 0 \\hat{A}_{i}^{\\mathrm{sum}}=0 for i ​ o ​ t ​ i ​ n ​ 𝒪 iotin\\mathcal{O} and retain the computed\nguard advantage for i ∈ 𝒪 i\\in\\mathcal{O} . The summary tokens remain in the loss\nmask and under the per-token KL constraint. We query the judge for every\nrollout, including omission cases; its parameters remain frozen. For a guard\nrollout, the policy reward is overridden by R sum = R pen = − 0.5 R_{\\mathrm{sum}}=R_{\\mathrm{pen}}=-0.5 . The omission-exception condition remains close to SLCA on Process, Toucan,\nand BFCL, while its τ 2 \\tau^{2} -Bench score is lower by 4.78 pp and its Summary\nscore is close to the SFT value. The full-zero condition is reported as a\nguard diagnostic: removing both the summary advantage and the guard raises the\nno-call rate to 14.2% and lowers all listed scores. Its no-call rollouts\nreceive no advantage-weighted policy gradient, while the KL term remains active.\nThe two rows are not interpreted as a comparison of the summary branch alone."
+            },
+            {
+              "heading": "D.12 \nExecution-Based Reward Experiment",
+              "excerpt": "To test whether SLCA’s gains extend beyond gold-trajectory matching rewards, we replace R tool = S process {\\color[rgb]{0.418,0.3711,0.8203}R_{\\mathrm{tool}}}=S_{\\text{process}} with execution-based R succ R_{\\text{succ}} . R sum = S summary {\\color[rgb]{0.3711,0.6406,0.3047}R_{\\mathrm{sum}}}=S_{{\\color[rgb]{0.3711,0.6406,0.3047}\\mathrm{summary}}} remains unchanged.\nBoth methods use Qwen2.5-7B-Instruct with identical data, SGLS, and compute. For this test, the binary R succ R_{\\text{succ}} judge labels each rollout as Solved or Unsolved without per-example gold-call matching. Table 25 reports the matched comparison. The SLCA advantage persists under the execution-based reward. Absolute scores are lower than under dense HierR rewards because the execution signal is sparser."
+            }
+          ]
+        },
+        "decision": {
+          "model": "openjev",
+          "answers": {
+            "novelty_level": {
+              "type": "choice",
+              "choice": "new_mechanism",
+              "probabilities": {
+                "incremental": 0.01,
+                "new_mechanism": 0.99,
+                "uncertain": 0
+              },
+              "confidence": 0.98
+            },
+            "comparison": {
+              "type": "choice",
+              "choice": "specific",
+              "probabilities": {
+                "specific": 1,
+                "missing": 0,
+                "generic": 0
+              },
+              "confidence": 1
+            },
+            "evaluation": {
+              "type": "choice",
+              "choice": "cross_domain_or_ablation",
+              "probabilities": {
+                "insufficient": 0,
+                "cross_domain_or_ablation": 1,
+                "benchmark_only": 0
+              },
+              "confidence": 1
+            }
+          },
+          "usage": {
+            "input_tokens": 3288,
+            "output_tokens": 136,
+            "cost": 0.000138096
+          },
+          "id": "gen-dec-1790562610-SM28V0Ohj4CLrQGkEg2a",
+          "provider": "TypeSafe"
+        }
+      }
+    }
+  ]
+}

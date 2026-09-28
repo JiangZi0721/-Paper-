@@ -5,6 +5,10 @@ import os
 import urllib.error
 import urllib.request
 
+try:
+    from prompts import SYSTEM_PROMPT
+except ImportError:
+    from scripts.jev_pipeline.prompts import SYSTEM_PROMPT
 
 API_URL = "https://api.openjev.sh/v1/systemone"
 
@@ -12,15 +16,19 @@ API_URL = "https://api.openjev.sh/v1/systemone"
 def analyze(paper: dict, api_key: str) -> dict:
     payload = {
         "model": "openjev",
-        "state": {"source": "Hugging Face Daily Papers", "paper": paper},
+        "state": {
+            "source": "Hugging Face Daily Papers",
+            "system_prompt": SYSTEM_PROMPT,
+            "paper": paper,
+        },
         "questions": {
             "primary_class": {
                 "type": "choice",
-                "instructions": "Classify the paper for self-evolving-agent research. Choose core_self_evolving for a direct self-improvement loop, adjacent_inspiration for a non-core paper with a concrete transferable mechanism, or not_recommended for weak relevance or insufficient evidence.",
+                "instructions": "Classify the paper for self-evolving-agent research. Choose core_self_evolving for a direct self-improvement loop or agent on-policy RL, adjacent_inspiration for transferable mechanisms (world models, competitive arenas, memory), or not_recommended for off-topic areas (pure CV/image generation/autoencoders, robot kinematics, speech) or weak relevance.",
                 "criteria": {
-                    "core_self_evolving": "Directly studies an agent that improves its policy, memory, skills, tools, harness, data, or parameters from feedback",
-                    "adjacent_inspiration": "Not mainly self-evolving agents but offers a concrete transferable mechanism or evaluation lesson",
-                    "not_recommended": "Weak relevance, insufficient evidence, or routine incremental work for this research track"
+                    "core_self_evolving": "Directly studies an agent improving policy, memory, skills, tools, harness, data, or parameters from feedback. Explicitly includes agent on-policy RL (RLVR/GRPO/PPO), segment-level credit assignment, and tool-use policy updates.",
+                    "adjacent_inspiration": "Not mainly self-evolving agents but offers a concrete transferable mechanism, world action model, or evaluation arena.",
+                    "not_recommended": "Weak relevance, pure computer vision (image/video gen, autoencoders, latent fusion), low-level robot joint kinematics, or off-topic work.",
                 }
             },
             "value_tier": {
@@ -37,13 +45,13 @@ def analyze(paper: dict, api_key: str) -> dict:
                 "type": "choice",
                 "instructions": "Choose the main reason supporting the triage decision, especially when not recommending the paper.",
                 "criteria": {
-                    "direct_self_evolution_loop": "Feedback changes the agent, memory, skills, tools, harness, data, or policy",
+                    "direct_self_evolution_loop": "Feedback changes the agent, memory, skills, tools, harness, data, or policy (including agent on-policy RL and credit assignment)",
                     "new_system_boundary": "New system boundary or problem framing for agent evolution",
                     "transferable_mechanism": "Concrete mechanism adaptable to self-evolving agents",
                     "incremental_optimization": "Main contribution is an incremental algorithm, recipe, prompt, or implementation",
                     "benchmark_score_focus": "Evidence mainly emphasizes scores without a new transferable mechanism",
                     "weak_or_insufficient_evidence": "Abstract lacks evidence for a stronger inclusion",
-                    "off_topic": "Outside the current research scope"
+                    "off_topic": "Outside scope: pure computer vision/diffusion/autoencoders, robot joint hardware, speech, or static parsing"
                 }
             },
             "mechanisms": {
