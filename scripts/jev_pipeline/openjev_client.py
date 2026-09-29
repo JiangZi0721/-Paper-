@@ -24,11 +24,11 @@ def analyze(paper: dict, api_key: str) -> dict:
         "questions": {
             "primary_class": {
                 "type": "choice",
-                "instructions": "Classify the paper for self-evolving-agent research. Choose core_self_evolving for a direct self-improvement loop or agent on-policy RL, adjacent_inspiration for transferable mechanisms (world models, competitive arenas, memory), or not_recommended for off-topic areas (pure CV/image generation/autoencoders, robot kinematics, speech) or weak relevance.",
+                "instructions": "Classify the paper for self-evolving-agent research. Choose core_self_evolving for foundational self-evolution mechanisms (environment synthesis, verifiable self-supervision, credit assignment, metacognitive revision, memory dynamics), adjacent_inspiration for transferable mechanisms, vertical embodied engineering applications, or ML training systems, or not_recommended for off-topic/pure CV/hardware.",
                 "criteria": {
-                    "core_self_evolving": "Directly studies an agent improving policy, memory, skills, tools, harness, data, or parameters from feedback. Explicitly includes agent on-policy RL (RLVR/GRPO/PPO), segment-level credit assignment, and tool-use policy updates.",
-                    "adjacent_inspiration": "Not mainly self-evolving agents but offers a concrete transferable mechanism, world action model, or evaluation arena.",
-                    "not_recommended": "Weak relevance, pure computer vision (image/video gen, autoencoders, latent fusion), low-level robot joint kinematics, or off-topic work.",
+                    "core_self_evolving": "Directly invents or advances foundational mechanisms of agent self-evolution: capability-oriented environment synthesis (Skill2Env), program/rule-verified self-supervision (VQS), decision-span/entropy credit assignment (AlignOPSD/EAPO), metacognitive workflow revision (ControlScope), or reliability memory dynamics (BaRe-Mem).",
+                    "adjacent_inspiration": "Offers transferable inspiration, or is a vertical embodied engineering application (applying existing LLM prompt reflection/coding without algorithmic evolution), or is ML systems/training infra (distributed engine mismatch, KV cache), or World Action Model (WAM).",
+                    "not_recommended": "Weak relevance, pure computer vision (image/video gen, autoencoders, latent fusion), low-level robot joint kinematics without cognitive planning, or off-topic work.",
                 }
             },
             "value_tier": {
@@ -45,9 +45,9 @@ def analyze(paper: dict, api_key: str) -> dict:
                 "type": "choice",
                 "instructions": "Choose the main reason supporting the triage decision, especially when not recommending the paper.",
                 "criteria": {
-                    "direct_self_evolution_loop": "Feedback changes the agent, memory, skills, tools, harness, data, or policy (including agent on-policy RL and credit assignment)",
-                    "new_system_boundary": "New system boundary or problem framing for agent evolution",
-                    "transferable_mechanism": "Concrete mechanism adaptable to self-evolving agents",
+                    "direct_self_evolution_loop": "Feedback changes the agent, memory, skills, tools, harness, data, environment, or policy via a foundational evolution mechanism",
+                    "new_system_boundary": "New system boundary, environment synthesis paradigm, or problem framing for agent evolution",
+                    "transferable_mechanism": "Concrete mechanism, vertical embodied application, or ML training infrastructure adaptable to self-evolving agents",
                     "incremental_optimization": "Main contribution is an incremental algorithm, recipe, prompt, or implementation",
                     "benchmark_score_focus": "Evidence mainly emphasizes scores without a new transferable mechanism",
                     "weak_or_insufficient_evidence": "Abstract lacks evidence for a stronger inclusion",

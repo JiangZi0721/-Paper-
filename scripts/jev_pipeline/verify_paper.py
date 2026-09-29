@@ -10,10 +10,10 @@ from scripts.jev_pipeline.openjev_client import API_URL
 QUESTIONS = {
     "novelty_level": {
         "type": "choice",
-        "instructions": "Using ONLY the supplied paper excerpts, classify the contribution to self-evolving agents. Do not infer priority from benchmark gains alone.",
+        "instructions": "Using ONLY the supplied paper excerpts, classify the contribution to self-evolving agents. Distinguish foundational evolution mechanisms (environment synthesis, program verification, non-symmetric credit, self-revision scoping) from vertical application wrappers (robot deployments of standard prompt-reflection/coding) or ML training infra. Do not infer priority from benchmark gains alone.",
         "criteria": {
-            "new_mechanism": "A clearly described new mechanism or problem framing with evidence",
-            "incremental": "A useful but mainly incremental algorithm or engineering improvement",
+            "new_mechanism": "A clearly described new self-evolution mechanism, verifiable learning principle, or environment co-evolution framing with evidence",
+            "incremental": "A useful but mainly incremental algorithm, engineering deployment on robot hardware without new evolution theory, or infra patch",
             "uncertain": "Available excerpts do not establish novelty"
         }
     },

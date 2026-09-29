@@ -16,14 +16,15 @@ import sys
 import time
 from datetime import datetime
 
-# 1. 强力负向黑名单：纯非智能体领域直接一票否决
+# 1. 强力负向黑名单：纯非智能体领域或底层训练Infra直接一票否决
 EXCLUDE_REGEX = [
     r'video-native', r'video generation', r'video diffusion', r'text-to-video', r'video-based',
     r'point cloud', r'3d articulation', r'spoken factoid', r'speech audio', r'spoken question',
     r'font restyling', r'opentype', r'document parsing', r'pure doc', r'omni doc',
     r'kv cache compression', r'offloaded kv', r'sparse decoding over offloaded',
     r'serving 35b moes', r'memory wall', r'anthropomorphic hand', r'locomotion and manipulation',
-    r'obfuscated platform message', r'riskchainbench', r'image generation', r'text-to-image'
+    r'obfuscated platform message', r'riskchainbench', r'image generation', r'text-to-image',
+    r'training-inference mismatch', r'kv cache sharing', r'speculative decoding', r'voice similarity'
 ]
 
 # 2. 基础主体范围：必须属于智能体或多轮交互/在策略演进范畴
@@ -48,7 +49,12 @@ EVOLUTION_PATTERNS = [
     (r'\bexperience-driven policy refinement\b', "经验驱动策略自精进"),
     (r'\blength inflation in on-policy\b', "在策略蒸馏长度膨胀治理"),
     (r'\bbandit-guided evolution\b', "老虎机引导技能自演化"),
-    (r'\bgenetic algorithms enable multi-agent\b', "演化遗传多智能体探索")
+    (r'\bgenetic algorithms enable multi-agent\b', "演化遗传多智能体探索"),
+    (r'\benvironment synthesis\b', "环境与沙盒自适应合成 (Environment Synthesis)"),
+    (r'\bprogram-verified\b', "程序可验证自监督 (Program-Verified Self-Evolution)"),
+    (r'\bverifiable qa generation\b', "可验证问答生成自演化 (VQS)"),
+    (r'\bworkflow revision\b', "工作流自主修订与可靠性 (Workflow Revision)"),
+    (r'\bbayesian reliability memory\b', "贝叶斯可靠性记忆自演化 (BaRe-Mem)")
 ]
 
 def sanitize_filename(filename):
