@@ -3,3 +3,5 @@
 /hf_latest_raw.json
 __pycache__/
 *.pyc
+scratch/
+scratch*.txt
