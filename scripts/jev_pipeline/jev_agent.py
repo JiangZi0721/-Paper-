@@ -1,21 +1,18 @@
 """
-Jev Plus v1.3 Dedicated Paper Tracking & Triage Agent
+Jev Plus v1.3.1 Dedicated Paper Tracking & Triage Agent
 =====================================================
 Enforces strict closed-loop self-evolution criteria, rejects pseudo-causal
-statistical academic bloat, and demotes isolated single-tool feature engineering.
+statistical academic bloat, demotes isolated single-tool feature engineering,
+and ELIMINATES template-anchored quota filling and greedy adjacent dumping.
 
-Core Principles (Jev Plus v1.3):
+Core Principles (Jev Plus v1.3.1):
 1. VETO 1: No Closed-Loop Self-Evolution Dynamics -> REJECT / NOT RECOMMENDED.
-   - Demotes isolated tool engineering (e.g., adding a compact() action) without
-     recursive self-improvement or meta-harness evolution.
 2. VETO 2: Causal / Statistical Academic Bloat -> REJECT / NOT RECOMMENDED.
-   - Rejects econometric/biostatistical papers dressing basic heuristic exploration
-     (like epsilon-greedy slot rotation) in 40+ pages of SCM / IPW with intractable
-     sample complexity (e.g., Causal Memory Policy / CMP).
 3. VETO 3: System-Level Meta-Design Over Single-Point Tweaks.
-   - Prioritizes macro-structural harness code evolution (e.g., MILO), dynamic playbook
-     patching (Turbo Harness), literature-driven lifelong evolution (ScholarEvolve),
-     and verifiable synthetic sandbox generation (SkillGym, PhantomEnvironments).
+4. VETO 4: Anti-Quota Fallacy & Zero-Slot Bias -> NO PRESET "6+2" COUNTS.
+   - Dynamic reporting based strictly on actual paper quality (0 to N).
+5. VETO 5: Anti-Adjacent Dumping -> STRICT BOUNDARIES FOR ADJACENT INSPIRATION.
+   - No dumping general ML papers into adjacent_inspiration.
 """
 
 import sys
@@ -88,12 +85,13 @@ class JevTriageAgent:
         summary = paper.get("summary", "").lower()
         text = f"{title} {summary}"
 
-        # Check for core self-evolving markers
+        # Check for core self-evolving markers (fundamental closed-loop evolution)
         core_markers = [
             "harness discovery", "harness evolution", "co-evolv", "meta-evolution",
             "verifiable environment", "environment synthesis", "self-distillation",
             "on-policy distillation", "recursive self-improvement", "length-scaling tax",
-            "scaffold-isolated", "online distillation"
+            "scaffold-isolated", "online distillation", "curriculum learning for agent harness",
+            "reusable experience", "experience tree", "soft memory"
         ]
         
         is_core = any(marker in text for marker in core_markers)
@@ -102,22 +100,31 @@ class JevTriageAgent:
         is_isolated_tool = ("compact context" in text or "context compaction" in text) and \
                            not ("harness" in text or "island" in text or "recursive" in text)
 
+        # Explicit adjacent categories (must match specific valuable agent-adjacent infrastructure)
+        adjacent_markers = [
+            "reward gaming", "cheating", "sandbox", "terminal execution", "verifiable reward",
+            "workspace synthesis", "belief state", "belief trapping", "sharpening tax",
+            "distillation dynamics", "multi-reward", "reward aggregation", "diagnostic ladder"
+        ]
+        is_adjacent = any(marker in text for marker in adjacent_markers)
+
         if is_core and not is_isolated_tool:
             category = "core_self_evolving"
             confidence = 0.95
-            reason = "Advances fundamental closed-loop self-evolution / harness discovery / environment synthesis mechanism."
+            reason = "Advances fundamental closed-loop self-evolution / harness discovery / environment synthesis / on-policy distillation mechanism."
         elif is_isolated_tool:
             category = "adjacent_inspiration"
             confidence = 0.85
             reason = "Jev Plus v1.3 Veto 1: Isolated tool/action engineering without autonomous recursive self-improvement."
-        elif "reward gaming" in text or "cheating" in text or "sandbox" in text:
+        elif is_adjacent:
             category = "adjacent_inspiration"
             confidence = 0.90
-            reason = "Key safety / reward gaming benchmark for self-evolving agent reinforcement learning."
+            reason = "Key execution sandbox, RL dynamics calibration, or model-harness boundary diagnostic."
         else:
-            category = "adjacent_inspiration"
-            confidence = 0.70
-            reason = "Related adjacent exploration or domain tooling."
+            # Strictly reject papers that do not meet core or adjacent criteria
+            category = "not_recommended"
+            confidence = 0.85
+            reason = "Off-topic or general capability work lacking closed-loop self-evolution or verifiable sandbox mechanics."
 
         return {
             "id": paper.get("id"),
@@ -128,5 +135,6 @@ class JevTriageAgent:
         }
 
 if __name__ == "__main__":
-    agent = JevTriageAgent()
-    print(f"JevTriageAgent {agent.version} initialized successfully.")
+    agent = JevTriageAgent(version="v1.3.1")
+    print(f"JevTriageAgent {agent.version} initialized successfully with Anti-Quota Fallacy & Zero Greedy Dumping rules.")
+

@@ -36,9 +36,21 @@
 #    聚焦脚手架代码自演化 (如 MILO)、实例自适应动态打补丁 (如 Turbo Harness)、知识文献驱动进化 (如 ScholarEvolve)
 #    与认知解构机制 (如 OASIS 拆解特权鸿沟、LSD 对冲长度税)。
 # ==============================================================================
+# v1.3.1 (2026-10-03 Jev Plus 漏洞修复 - 彻底根除“伪配额制”与“模板偏置漏洞”):
+# 1. [铁律四：绝对零配额与反心理锚定 (Anti-Quota Fallacy & Zero-Slot Bias)]:
+#    严禁受历史总索引中“精选 6 篇核心 + 2 篇关键前沿”模板的心理锚定，绝对禁止在潜意识中凑齐“6+2”或“6+3”；
+#    当天有多少真正具备底层自进化突破的论文就据实收录几篇 (可为0篇、1篇、5篇或12篇)，绝不削足适履！
+# 2. [铁律五：严禁大容积默认兜底 (Anti-Adjacent Dumping)]:
+#    严禁在分诊时将未命中的普通论文无脑划为 adjacent_inspiration！凡无环境交互闭环、无自演化更新准则、
+#    无确定性 Verifier 的常规单轮问答、纯文本微调、普通具身遥操作或经院统计计量包装，一律无情判定为 not_recommended。
+# ==============================================================================
 
 SYSTEM_PROMPT = """You are a strict but fair research triage assistant for a researcher studying self-evolving agents.
 Do not infer claims that are not supported by the supplied title and abstract. Do not treat the words agent, adaptive, evolution, self-evolving, or improvement alone as proof of core self-evolving mechanisms. Separate a direct algorithmic self-evolution loop from an application wrapper, infrastructure patch, or isolated feature engineering. Separate a genuinely new idea or insight from an incremental algorithm, engineering deployment, or benchmark optimization. Never call a paper worthless; explain why it is not a priority for this research track and preserve any concrete lesson.
+
+CRITICAL VULNERABILITY RULES:
+1. ABSOLUTE ZERO QUOTA (ANTI-TEMPLATE ANCHORING): Never force-fit findings into an arbitrary historical "6 core + 2 adjacent" template. Output strictly the dynamic count of papers that genuinely qualify under the criteria, whether it is 0, 3, or 15. Never promote low-value papers to fill quotas.
+2. NO GREEDY DUMPING TO ADJACENT: Non-evolving papers that fail hard negative checks or lack interactive closed loops must be categorized as not_recommended, NOT dumped into adjacent_inspiration.
 
 DOMAIN BOUNDARIES:
 1. Core Self-Evolving Agents (core_self_evolving):

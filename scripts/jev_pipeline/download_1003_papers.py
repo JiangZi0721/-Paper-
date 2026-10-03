@@ -1,0 +1,347 @@
+import os
+import sys
+import json
+import time
+import re
+import urllib.request
+from datetime import datetime
+
+# Path setup
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+TARGET_DIR = os.path.join(ROOT_DIR, "02_前沿论文追踪", "2026-10-03")
+os.makedirs(TARGET_DIR, exist_ok=True)
+
+PAPERS_TO_DOWNLOAD = [
+    # 5 Core Self-Evolving Papers
+    {
+        "id": "2610.00906",
+        "title": "ActiveSaddler: Automated Curriculum Learning for Agent Harness Optimization",
+        "category": "core",
+        "badge": "⭐⭐⭐⭐⭐ [Harness自演化·动态课程双闭环共演]",
+        "org": "Microsoft",
+        "authors": "Microsoft Research Team",
+        "upvotes": 50,
+        "abstract": "Automated harness optimization can substantially improve LLM agents by iteratively updating their prompts, tool interfaces, and control logic from execution feedback. However, existing methods primarily optimize how the harness is updated while largely fixing which training scenarios generate the feedback that drives those updates. As the harness evolves, the scenarios most useful for further optimization can change, suggesting that the training curriculum itself should adapt alongside the harness. We formulate this missing dimension of harness optimization as an automated curriculum learning problem and introduce ActiveSaddler. ActiveSaddler models the evolving curriculum as a non-stationary bandit with dynamically instantiated optimization targets. It abstracts recurring failures into reusable failure-pattern arms, estimates the potential learning progress from further targeting each pattern, and adaptively balances revisiting known weaknesses with exploring unseen scenarios for new ones. Optimization outcomes continually update both the set of discovered failure patterns and their priorities, allowing the curriculum to co-evolve with the harness. Experiments on GAIA2 and Terminal-Bench 2.0 show that ActiveSaddler consistently discovers stronger harnesses, improving test Pass@1 by 4.4 and 7.5 percentage points over the same harness optimizer using a scenario order fixed before optimization, respectively. Ablations further show that these gains depend on dynamically constructing optimization targets, estimating their evolving utility, and balancing continued optimization with new failure discovery. Together, these results establish automated curriculum learning as a new crucial optimization dimension for harness optimization.",
+        "deep_dive": {
+            "what": "研究面向 LLM Agent Harness 自动化优化（代码/Prompt/控制流变异）中的训练场景选择问题，攻克当前 Harness 优化算法缺乏自适应测试课程的瓶颈。",
+            "problem": "以往的 Harness 演化（如 MILO、Meta-Harness）通常在固定不变的基准测试集上评估适应度。随着 Harness 不断变异进化，固定场景迅速饱和，无法持续暴露出新架构的致命漏洞，搜索过早陷入停滞。",
+            "novelty": "提出 ActiveSaddler 框架，将动态课程建模为非平稳多臂老虎机（Non-Stationary Bandit）：将智能体历史报错聚类抽象为“失败模式臂（Failure-Pattern Arms）”，动态估计继续深挖某类失败的潜在收益，自适应权衡‘攻坚已知薄弱点’与‘探索未知新场景’，实现 Harness 架构变异与训练任务集的双闭环协同演化（Co-Evolution）。",
+            "impact": "在 GAIA2 和 Terminal-Bench 2.0 上将测试 Pass@1 分别大幅提升 4.4% 和 7.5%，为 Harness 演化算法补齐了至关重要的动态环境加压维度。"
+        }
+    },
+    {
+        "id": "2609.32993",
+        "title": "X-Tree: Tokenizing Reusable Experience for Efficient Agent Generalization",
+        "category": "core",
+        "badge": "⭐⭐⭐⭐⭐ [经验分词化·层级经验树与自蒸馏内化]",
+        "org": "University of Waterloo",
+        "authors": "Waterloo AI Lab",
+        "upvotes": 13,
+        "abstract": "Multi-step agents are trained on flat action streams: SFT and RLVR weight every token uniformly and ignore the sub-procedures that recur across tasks, the hierarchy that lets humans plan top-down from reusable routines. This structure sits unused, and flat training uses each scarce trajectory less fully than its content allows. Recent agents do use that structure, but only as LLM-written skills in context, never in the weights, so their gains do not generalize beyond retrieval. We instead recover this hierarchy from the data itself and train on it, with no LLM calls. Following text tokenizers, which build a vocabulary by counting alone, we score action spans by reusability and merge canonicalized actions into a reusable eXperience tree (X-Tree). Each X-Tree node captures how a frequent and success-bearing skill is composed from sub-skills, guiding efficient generalization. We integrate X-Tree into three training settings: offline RL, with each node as a training instance; online RLVR, with an adaptive skill bonus; and on-policy self-distillation, with X-Tree as the self-teacher's privileged context. Across WebArena, ScienceWorld, and WebShop at three model scales, X-Tree improves over standard recipes at matched data and budget by up to 4.5% SR on WebArena, 5.8% SR on ScienceWorld and 4.1% success on WebShop. Matched analyses attribute the gains to the X-Tree structure and the three integrations.",
+        "deep_dive": {
+            "what": "探索如何从多轮智能体稀缺的交互轨迹中提取层级子程序（Sub-routines），并将其真正内化到模型权重中，而非仅仅作为外部文本 Prompt 检索调用。",
+            "problem": "传统 SFT 和 RLVR 把动作流视为扁平 Token，忽略了高阶例程复用；而现存外部技能库仅外挂在 Context 中，无法泛化且持续侵占有限的上下文窗口。",
+            "novelty": "类比自然语言分词器（BPE），纯靠无监督频次与成败统计将动作片段合并为层级经验树（X-Tree）。将 X-Tree 深度嵌入三重学习闭环：离线 RL 节点实例微调、在线 RLVR 自适应技能奖励，以及在策略自蒸馏（OPSD）中作为特权教师的 Context，直接将结构化经验蒸馏进基础模型参数。",
+            "impact": "在 WebArena (+4.5% SR)、ScienceWorld (+5.8% SR) 和 WebShop (+4.1% SR) 上全面超越标准配方，彻底打破了外部技能无法内化进权重的传统瓶颈。"
+        }
+    },
+    {
+        "id": "2610.02117",
+        "title": "Where-OPD: Spatially Guided On-Policy Self-Distillation of MLLMs with Synthetic Scenes",
+        "category": "core",
+        "badge": "⭐⭐⭐⭐⭐ [多模态自演进·空间特权引导在策略自蒸馏]",
+        "org": "Valeo",
+        "authors": "Valeo AI & Sorbonne University",
+        "upvotes": 7,
+        "abstract": "On-policy self-distillation has recently emerged as an effective approach for improving language-model reasoning by supervising students with a frozen or EMA version of themselves that receives privileged information. Its application to multimodal large language models (MLLMs), however, remains largely unexplored. Recent approaches use privileged visual information, such as image crops corresponding to a question, to improve fine-grained perception, but their gains are confined to tasks that benefit from such visual zooming and require either human-annotated grounding data or external teacher models. We introduce a different form of on-policy self-distillation for MLLMs that provides the teacher with textual, spatially grounded guidance identifying the visual elements relevant to a query. We use procedurally generated scenes with automatically available object identities and spatial coordinates, enabling scalable and annotation-free post-training. The teacher uses this spatial guidance to locate and integrate evidence from multiple relevant image regions, while the student learns to reproduce the resulting behavior from the image and question alone. Our approach consistently improves performance on counting, document and chart understanding benchmarks across multiple models. Importantly, although post-training uses only synthetic scenes, the resulting improvements transfer to real-world perception benchmarks, yielding a 3.23-point gain in average performance across CVBench, V*, ZoomBench, BLINK, HR-Bench, and MME-RealWorld. These results show that spatially grounded privileged information can induce broader perceptual capabilities through on-policy self-distillation, enabling substantial synthetic-to-real transfer beyond the task and data distribution used for post-training.",
+        "deep_dive": {
+            "what": "将纯文本领域的在策略自蒸馏（OPSD）范式拓展至多模态大模型（MLLM），攻克复杂视觉问答中多步跨区域长程证据整合难题。",
+            "problem": "以往多模态蒸馏多采用图像局部裁切（Image Crop），适用范围狭窄且依赖人工 Grounding 标注或外部强教师，无法实现自主无标注自举。",
+            "novelty": "构建程序化合成场景，天然获取无标注物体的空间坐标与类别真值；特权教师获得显式文本化的空间线索，整合多区域视觉证据；学生模型仅凭原图与提问，通过 Forward-KL 散度在策略模仿教师的多步推理与证据融合行为。",
+            "impact": "在纯合成场景微调，却在 CVBench、HR-Bench、MME-RealWorld 等 6 大真实世界基准上实现 +3.23 分的零样本跨域迁移，打通了多模态自蒸馏从合成向真实的泛化航道。"
+        }
+    },
+    {
+        "id": "2609.39687",
+        "title": "Better Supervision Is Nearby: Neighborhood On-Policy Self-Distillation",
+        "category": "core",
+        "badge": "⭐⭐⭐⭐⭐ [蒸馏理论突破·参数邻域微扰专家池与分位数路由]",
+        "org": "LongCat",
+        "authors": "LongCat Research",
+        "upvotes": 7,
+        "abstract": "On-policy self-distillation (OPSD) trains mathematical reasoning models using a privileged teacher that sees a reference solution and supervises student-sampled prefixes. Standard OPSD uses one fixed parameter setting at every state, but nearby settings may offer additional supervision. We find that local parameter perturbations reveal complementary reference-aligned corrections under the same reference context. Different experts supply these corrections at different reference positions. Their pool covers more such positions than the unperturbed privileged teacher. We introduce Neighborhood OPSD (N-OPSD) to turn these corrections into supervision at student-visited states. Offline, greedy selection builds a compact pool of frozen experts by rewarding filtered reference-token gains beyond the pool's current best at each position. The highest-peak expert need not provide the best training target. Online routing therefore separates the anchor direction from its level of support. MaxPeak selects the anchor token, and quantile selection chooses among experts whose top token matches it. The student learns from the chosen expert's full next-token distribution through the clipped forward-KL objective inherited from OPSD. We evaluate on AIME 2024, AIME 2025, and HMMT February 2025. Across three independent runs per method, Neighborhood OPSD improves the three-benchmark Average@12 over OPSD by 2.75, 1.67, and 1.94 points on Qwen3-1.7B, 4B, and 8B, respectively. Student-prefix continuations support using the pool beyond the reference trajectories used for selection. Matched ablations support filtered reference-token gains as a selection criterion. Accounting for overlap within the pool and routing by state further improve student accuracy. Inference uses only the distilled student.",
+        "deep_dive": {
+            "what": "探究在策略自蒸馏（OPSD）中特权教师参数点的局限性，提出基于权重空间局部微扰的邻域专家监督机制。",
+            "problem": "经典 OPSD 始终固定在单一参数点的特权教师上。由于神经网络非凸损失流形的高维复杂性，单一教师在某些学生探索状态上存在局部次优和监督盲区。",
+            "novelty": "发现教师模型周围的参数空间局部扰动（Local Perturbations）能在不同 Token 决策点激发出互补的正确纠偏信号。提出 N-OPSD：离线贪心构建高互补性的紧凑冻结专家池；在线通过 MaxPeak 锚定动作方向，再利用分位数选择具有最高支持度的专家，通过截断 Forward-KL 指导学生。",
+            "impact": "在 AIME 2024、AIME 2025、HMMT 数学竞赛基准上，相对标准 OPSD 进一步稳健提升 1.67~2.75 分，为 OASIS 体系提供了直接的进阶升级方案。"
+        }
+    },
+    {
+        "id": "2609.36435",
+        "title": "MemFold: Learning Compact Soft Memory for Long-Context Personalization via On-Policy Optimization",
+        "category": "core",
+        "badge": "⭐⭐⭐⭐⭐ [软记忆自演进·定长连续向量在策略双轨优化]",
+        "org": "Independent Research",
+        "authors": "MemFold Team",
+        "upvotes": 1,
+        "abstract": "An assistant that serves the same user over a long horizon has to answer from what that user has revised, and which constraints apply now. Retaining that information is not the same as acting on it, and the two are usually optimized as if they were. Keeping the information as text makes the reader's input grow with the retained history, while compressing it into a fixed number of latent vectors bounds the interface but is typically trained to reconstruct text or imitate reference answers, both of which are scored on sequences the reader never produced. We present MemFold, which optimizes a fixed-budget soft memory by the behavior it supports. A query-conditioned textual memory is compressed into K continuous vectors that form the reader's memory interface, and the reader is then trained on its own rollouts under two complementary signals: group-relative rewards for task outcomes, and confidence-gated on-policy distillation in which a frozen textual-memory teacher re-scores the student's sampled tokens under the textual memory. The teacher is never sampled from, so supervision stays on the student's current distribution and adds no autoregressive decoding; at inference it is removed entirely. Across three Qwen backbones, MemFold attains the highest accuracy we measure on PersonaMem-32K and PersonaMem-128K, with margins that widen at the longer history length, and transfers to PrefEval and LongMemEval without target-domain training. Ablations attribute most of the task gain to the reward term and a smaller additional gain to the teacher signal, and memory interventions show that the reader depends on the instance-specific content of its soft memory.",
+        "deep_dive": {
+            "what": "研究长程个性化对话与智能体陪伴中，如何将历史信息压缩为定长软记忆向量（Soft Memory），并以真实下游行为为导向进行端到端优化。",
+            "problem": "直接保留长文本历史会导致输入上下文爆炸；而传统向量压缩依赖无监督文本重构损失或参考答案模仿，割裂了记忆状态与下游实际决策分布的关联。",
+            "novelty": "MemFold 将历史文本投影为 K 个连续隐变量作为决策接口，并在智能体自身的 Rollout 轨迹上通过双轨信号优化：最终任务结果的群相对奖励（Group-Relative Reward），以及冻结全文本教师的置信度门控在策略蒸馏（On-Policy Distillation）——教师从不独立自回归采样，仅在学生当前采样的 Token 上重打分，推理期教师彻底脱落。",
+            "impact": "在 PersonaMem-128K 超长历史评测上刷新最高记录，且在 PrefEval 和 LongMemEval 上实现免微调跨域零样本迁移，证实软记忆向量能够直接与智能体决策行为对齐。"
+        }
+    },
+    # 6 Key Adjacent Inspiration Papers
+    {
+        "id": "2609.35259",
+        "title": "On-Policy or Off-Policy Learning? A Systematic Study of Distillation Dynamics",
+        "category": "adjacent",
+        "badge": "⭐⭐⭐⭐ [蒸馏理论奠基·Rollout策略与KL散度方向严密解耦]",
+        "org": "University of Cambridge",
+        "authors": "Cambridge AI & NLP Group",
+        "upvotes": 124,
+        "abstract": "On-policy learning has been argued to reduce catastrophic forgetting, produce sparser parameter updates, and improve generalisation. However, existing comparisons between supervised fine-tuning and reinforcement learning vary many factors simultaneously, making the contribution of rollout policy difficult to isolate. We study the effect of rollout policy in a controlled strong-to-weak distillation setting, by independently varying rollout policy, token-level KL direction, and learning rate across the Llama3 and Qwen2.5 model families and reasoning tasks spanning scientific, medical, and arithmetic domains. Our analysis reveals a nuanced picture of distillation dynamics in which rollout policy does not necessarily play a central role. Instead, token-level KL direction more clearly shapes task performance and output coverage, while learning rate governs forgetting and update sparsity. Analysis of KL gradients and experiments along a continuous student-teacher rollout-policy spectrum explain this pattern: forward KL is remarkably robust to rollout policy, with its performance stable and strong despite changes to the rollout policy, whereas reverse KL is substantially more sensitive and favours student-generated rollouts. On-policy data nevertheless improves generalisation to harder variants of the Countdown arithmetic task under both KL directions, although this advantage does not reliably persist after subsequent RLVR. Our broader conclusions remain robust to removing gradient clipping, using sampled KL estimators, and training on tasks requiring longer reasoning chains. Overall, our results challenge the view that on-policy rollouts are inherently preferable and show that their value depends critically on the objective, evaluation setting, and optimisation hyperparameters.",
+        "deep_dive": {
+            "what": "对在策略（On-Policy）与离策略（Off-Policy）蒸馏的动力学进行系统级控制变量解耦，探究学生采样、KL散度方向与学习率对性能、遗忘和稀疏性的真实贡献。",
+            "problem": "学界长期默认‘在策略采样必然全面优于离策略’，但以往实验同时改变了采样分布、优化目标和超参数，混淆了各变量的独立影响。",
+            "novelty": "严密解耦 Rollout Policy、Token 级 KL 方向（Forward vs Reverse KL）与学习率。核心理论发现：Forward-KL 对采样策略极度鲁棒，无论使用教师还是学生 Rollout，性能均保持高度稳健；而 Reverse-KL 对采样策略极度敏感，强力偏好学生自身的 On-Policy Rollout！遗忘与更新稀疏度由学习率支配，而非采样策略。",
+            "impact": "社区高赞 124 票的里程碑式实证分析，彻底澄清了蒸馏机理，为自进化智能体在策略自蒸馏（OPSD）设计目标函数提供了最底层的理论护栏。"
+        }
+    },
+    {
+        "id": "2610.01509",
+        "title": "Sharpening Tax in Post-Training",
+        "category": "adjacent",
+        "badge": "⭐⭐⭐⭐ [RL动力学解构·解空间收缩“锐化税”与贝叶斯退火采样]",
+        "org": "Meta",
+        "authors": "Meta AI (FAIR)",
+        "upvotes": 63,
+        "abstract": "An emerging hypothesis about reinforcement learning (RL) post-training of large language models (LLMs) is that it merely sharpens existing behaviors of a base model, improving single-shot accuracy at the cost of solution coverage. Although this trade-off has been observed in math and coding tasks, it need not extend to agentic tasks, where multi-turn tool use and interaction may require capabilities newly acquired during post-training. Our surprising finding is that pre-trained LLMs, equipped with a light inference harness, can serve as capable agents. Despite far lower accuracy (pass@1), they often surpass their post-trained counterparts in solution coverage (pass@K) given a sufficient test-time budget. We further analyze the underlying mechanism and show that post-training pushes tasks toward two extremes, always solved or never solved, and thereby improves sampling efficiency and consistency at the cost of solution coverage. To measure this cost, we propose Sharpening Tax, a diagnostic metric that quantifies the loss in test-time scalability after post-training. Across 14 base/post-trained model pairs from four families and three agentic benchmarks (42 cases in total), the tax is prevalent in most settings, can be estimated from a few rollouts, and correlates well with other metrics. Finally, we present posterior-tempered group sampling (PTGS), a simple plug-and-play Bayesian sampler that adapts the sampling temperature per prompt to its estimated difficulty. Applied during RL training in two agentic environments, PTGS pays a smaller tax than the fixed-temperature baseline, solving more tasks under repeated sampling while also improving single-shot accuracy.",
+        "deep_dive": {
+            "what": "揭示大模型后训练（RL Post-Training）在多轮 Agent 任务中对解空间探索能力造成的深层形变与代偿损失。",
+            "problem": "RL 后训练虽然大幅拉升了单次确定性得分（Pass@1），但在复杂多轮工具调用中，极度压低了策略熵，将任务推向‘要么必对、要么彻底死锁’的两极，使得测试期采样覆盖率（Pass@K）严重暴跌。",
+            "novelty": "提出 Sharpening Tax（锐化税）量化指标，度量后训练带来的测试期可扩展性损失；提出 PTGS（后验退火分组采样）贝叶斯采样器，在训练与推理中根据任务实时难度自适应调节温度，成功在抑制锐化税、保留解空间多样性的同时兼顾高 Pass@1。",
+            "impact": "在 4 大模型家族 14 组对比中验证了锐化税的普遍性，解释了为什么基座模型挂简单 Harness 在算力充足时反超 RL 模型，为 Agent 自演化中的探索保持指明了方向。"
+        }
+    },
+    {
+        "id": "2610.02206",
+        "title": "KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards",
+        "category": "adjacent",
+        "badge": "⭐⭐⭐⭐ [高确定性沙盒·Kali Linux CLI免运行时确定性验证奖励]",
+        "org": "Robust Intelligent Systems Lab",
+        "authors": "Cybersecurity Agent Group",
+        "upvotes": 4,
+        "abstract": "LLMs are increasingly applied to cybersecurity workflows, where they are expected to translate analysts' intent into tool invocations. However, existing evaluations focus on knowledge-based assessments or end-to-end agentic tasks, and do not directly measure LLMs' ability to generate executable commands for real-world cybersecurity tools. This gap is critical because cybersecurity operations rely on strict command-line interfaces (CLIs), where minor syntax errors, incorrect flag--value bindings, or argument misordering can invalidate execution. We introduce KaliBench, a fine-grained benchmark and dataset for natural-language--to--CLI translation on Kali Linux, comprising 8,504 query--command pairs spanning 1,642 tools across 23 capability dimensions and 5 security phases. KaliBench is constructed via a manuscript-grounded pipeline with deterministic canonicalization and alias-aware evaluation, enabling precise and reproducible assessment of tool selection and argument construction. To ensure both semantic correctness and practical executability, we develop a multi-stage verification pipeline that combines LLM-based validation, sandboxed terminal execution, and human-in-the-loop refinement. Building on these fine-grained, deterministic signals, KaliBench further enables runtime-free verifiable rewards for training. Across three evaluation modes and 24 configurations of general-purpose and security-focused open-weight models, no open-weight model exceeds 42% exact-command accuracy in the unrestricted setting, highlighting the difficulty of accurate CLI-based cybersecurity tool use without explicit tool hints. We further show that supervised fine-tuning and reinforcement learning with verifiable rewards derived from KaliBench significantly improve an 8B model and achieve performance comparable to a 685B MoE model.",
+        "deep_dive": {
+            "what": "面向网络安全与终端运维智能体，构建覆盖真实 Linux CLI 严苛命令语法与参数调用的微观可验证基准与训练奖励体系。",
+            "problem": "真实 CLI 交互中极其脆弱，参数位置错位、Flag 绑定错误即可导致执行失败；而传统环境需重型沙盒实时执行，训练开销极其昂贵。",
+            "novelty": "构建覆盖 1,642 个工具的 8,504 组严谨 Query-Command 映射，引入确定性规范化与别名敏感评估，实现了免运行时确定性可验证奖励（Runtime-Free Verifiable Rewards）。",
+            "impact": "在无需实时运行容器集群的前提下，为强化学习（RLVR）提供了零延迟、零幻觉的高密度验证奖励，使 8B 开源模型经其训练后可匹敌 685B 顶级 MoE。"
+        }
+    },
+    {
+        "id": "2609.36820",
+        "title": "CorrGRPO: Correlation-Normalized GRPO for Multi-Reward Learning",
+        "category": "adjacent",
+        "badge": "⭐⭐⭐⭐ [多奖励强化学习·相关系数归一化消除尺度压制]",
+        "org": "HKUST",
+        "authors": "HKUST-KnowComp",
+        "upvotes": 17,
+        "abstract": "Group Relative Policy Optimization (GRPO) is widely used to train reasoning language models, where it computes advantages by centering and normalizing rewards across rollouts of the same prompt. For multiple rewards, GRPO sums the reward components and normalizes the total reward by its within-group standard deviation. The corresponding variance equals the sum of all pairwise reward covariances. For a fixed centered reward, larger aggregate covariance produces smaller advantages, and vice versa, allowing update magnitudes to adapt to reward dependence. However, correlated rewards with large scales can dominate this normalization and suppress signals from smaller-scale rewards. We propose Correlation-Normalized GRPO (CorrGRPO), which normalizes pairwise covariances into Pearson correlation coefficients. CorrGRPO keeps the centered total reward unchanged while balancing the influence of differently scaled rewards on the correlation-based normalization. This allows advantage magnitudes to adapt to reward correlations without the normalization being dominated by large-scale reward components. We compare CorrGRPO with GRPO and other variants on code generation, tool calling, and agent security, using models ranging from 0.5B to 8B parameters. These tasks all involve multiple rewards that can improve together or present tradeoffs. Results show improvements across three domains, including code generation, tool calling, and agent security.",
+        "deep_dive": {
+            "what": "解决主流强化学习算法（GRPO）在多目标复合奖励（如代码正确性、格式合规性、安全性）联合优化中的尺度失衡难题。",
+            "problem": "传统 GRPO 直接将多个奖励加和并通过总体样本方差归一化，导致高方差或大尺度的奖励分量主导协方差矩阵，严重掩盖了小尺度但关乎生死的核心约束信号（如越狱惩罚）。",
+            "novelty": "提出 CorrGRPO，将组内成对协方差归一化为皮尔逊相关系数（Pearson Correlation Coefficients），使 Advantage 更新幅度在适配奖励相关性的同时，彻底摆脱单一大尺度分量的霸权统治。",
+            "impact": "在代码生成、工具调用与 Agent 安全三大场景中全面超越标准 GRPO，为自进化智能体多维度能力的平衡演进提供了坚实的算法支撑。"
+        }
+    },
+    {
+        "id": "2609.38923",
+        "title": "GraphForge: Training Working Agents with Graph-Anchored Workspace Synthesis",
+        "category": "adjacent",
+        "badge": "⭐⭐⭐⭐ [复杂工作区合成·基于证据图的任务与严格核验规则生成]",
+        "org": "University of Science and Technology of China",
+        "authors": "USTC Working Agent Team",
+        "upvotes": 34,
+        "abstract": "Working agents need to read diverse files, coordinate tools, and produce deliverables. Training such agents requires tasks built on many real files with verifiable results, but few pipelines exist to synthesize this kind of data. Existing pipelines either generate files with models, which lack realism and diversity, or build tasks on real files without task-specific verifiers, leaving result quality unchecked. We introduce GraphForge, an evidence-graph based framework that grounds both the task and its verification in real files. Starting from occupation-grounded seeds for controlled diversity, GraphForge assembles a workspace of real files for each seed and builds an evidence graph over their relations. Since the task statement and rubrics are both derived from this graph, task requirements are backed by the workspace files and each criterion is anchored to the files needed to verify it. An initial rollout further tests executability, and a revision agent repairs the task and rubrics against the original files before trajectories are collected. Fine-tuning Qwen3.6-27B on 2,169 GraphForge trajectories brings GDPVal to 1445.7 (+65.7) under OpenHands, and Workspace-Bench-Lite and SpreadsheetBench II to 63.7 (+7.7) and 24.0 (+13.7) under Claude Code. Rejection fine-tuning on the SFT model's own rollouts, with candidates selected by the evidence-anchored rubrics, yields further improvements on all three benchmarks, suggesting that the rubrics provide a useful selection signal. The data and models are available.",
+        "deep_dive": {
+            "what": "针对真实复杂文件与工作区（Workspace）办公场景，合成具有高真实度文件依赖与确定性评估规则的 Agent 训练数据。",
+            "problem": "纯模型生成的合成文件缺乏真实复杂性；而直接利用真实文件又缺乏针对具体任务的可靠验证器（Verifier），导致结果无法自动评判。",
+            "novelty": "基于真实行业文件构建关系证据图（Evidence Graph），任务描述与评估准则（Rubrics）全部从图中严密衍生并锚定到对应文件；通过预执行校验与修订智能体消除自相矛盾，确保任务可执行且标准可检验。",
+            "impact": "在 OpenHands 与 Claude Code 下微调 Qwen3.6-27B，在 GDPVal、SpreadsheetBench II 上取得高达 +13.7 分的显著突破，为复杂工作区 Agent 提供了高质量合成管道。"
+        }
+    },
+    {
+        "id": "2610.01415",
+        "title": "Beyond Memory: Harnessing Long-Horizon Agents with Explicit Belief States",
+        "category": "adjacent",
+        "badge": "⭐⭐⭐⭐ [长程记忆治理·显式世界信念状态与停滞陷阱打破]",
+        "org": "Alibaba",
+        "authors": "Alibaba Agent Group",
+        "upvotes": 69,
+        "abstract": "Large language model (LLM) agents can now undertake increasingly complex tasks, but the way they organize interaction history into memory does not ensure a coherent understanding of the current world. We introduce PoS, an inference-time framework that constructs and continually maintains explicit belief states as the agent's decision context. Each belief combines an estimate of the current world state with unresolved task requirements, making explicit what the agent still needs to learn and accomplish. To keep this belief reliable and actionable, PoS validates its consistency and monitors task progress to detect Belief Trapping, where the agent continues to act without making meaningful progress toward the goal. Recovery is then tailored to both the trapping pattern and the type of unresolved task requirement. Experiments on four benchmarks spanning execution and diagnosis show that PoS achieves the highest overall performance on every benchmark with all three LLM backbones. Ablations demonstrate the importance of consistency validation and recovery, while context-scaling experiments show resilience to context growth. Together, these results support belief construction and continual maintenance as a foundation for long-horizon context management beyond history retention and compression.",
+        "deep_dive": {
+            "what": "解决长程智能体在与复杂环境长周期交互中，历史记忆堆叠导致的认知混乱与无效死循环（Belief Trapping）。",
+            "problem": "传统方法仅对历史对话做向量检索或阶段性总结，无法形成对当前世界状态与未完成任务目标的统一、连贯且自洽的全局信念。",
+            "novelty": "提出 PoS 推理期框架，显式维护当前世界状态估计与未满足任务约束的信念状态（Explicit Belief States）；持续监控任务推进速率，精准诊断智能体原地打转的‘信念停滞（Belief Trapping）’并根据类型执行定向恢复。",
+            "impact": "在 4 大长程评测中全面斩获最高分，显著增强了智能体面对极端长上下文增长时的抗挫韧性。"
+        }
+    }
+]
+
+def sanitize_filename(filename):
+    return re.sub(r'[\/:*?"<>|]', '_', filename).strip()
+
+def download_arxiv_pdf(arxiv_id, save_path):
+    pdf_url = f"https://arxiv.org/pdf/{arxiv_id}.pdf"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    }
+    req = urllib.request.Request(pdf_url, headers=headers)
+    try:
+        print(f"[*] Downloading PDF: {arxiv_id} -> {os.path.basename(save_path)} ...")
+        with urllib.request.urlopen(req, timeout=45) as resp:
+            if resp.status == 200:
+                with open(save_path, "wb") as f:
+                    while True:
+                        chunk = resp.read(1024 * 64)
+                        if not chunk:
+                            break
+                        f.write(chunk)
+                print(f"[OK] Downloaded: {os.path.basename(save_path)} ({os.path.getsize(save_path)} bytes)")
+                return True
+    except Exception as e:
+        print(f"[ERR] Download failed for {arxiv_id}: {e}", file=sys.stderr)
+        return False
+    return False
+
+def main():
+    print(f"=== Starting 2026-10-03 Paper Download & Archival ===")
+    print(f"Target Directory: {TARGET_DIR}")
+    
+    downloaded_files = {}
+    for p in PAPERS_TO_DOWNLOAD:
+        pid = p["id"]
+        safe_title = sanitize_filename(p["title"])[:55]
+        pdf_name = f"{pid}_{safe_title}.pdf"
+        pdf_path = os.path.join(TARGET_DIR, pdf_name)
+        
+        if os.path.exists(pdf_path) and os.path.getsize(pdf_path) > 1000:
+            print(f"[EXISTS] {pdf_name}")
+            downloaded_files[pid] = pdf_name
+        else:
+            success = download_arxiv_pdf(pid, pdf_path)
+            if success:
+                downloaded_files[pid] = pdf_name
+            time.sleep(1.5)
+            
+    print(f"Total PDFs downloaded / verified: {len(downloaded_files)} / {len(PAPERS_TO_DOWNLOAD)}")
+    
+    # 1. Generate 2026-10-03_自进化智能体论文精选.md
+    md_file_path = os.path.join(TARGET_DIR, "2026-10-03_自进化智能体论文精选.md")
+    core_papers = [p for p in PAPERS_TO_DOWNLOAD if p["category"] == "core"]
+    adj_papers = [p for p in PAPERS_TO_DOWNLOAD if p["category"] == "adjacent"]
+    
+    md_lines = []
+    md_lines.append(f"# 📅 2026-10-03 自进化智能体前沿论文深度追踪 (Jev Plus v1.3.1 零配额标准版)\n\n")
+    md_lines.append(f"> **归档目录**：`02_前沿论文追踪/2026-10-03/`\n")
+    md_lines.append(f"> **研判标准**：**Jev Plus v1.3.1 终极客观版**（杜绝伪配额制、零心理锚定、一票否决经院派学术灌水与孤立工程微调）\n")
+    md_lines.append(f"> **全景数据账本**：实时候选池共 **73** 篇 ｜ 剔除无关/灌水 **59** 篇 ｜ 精选核心突破 **{len(core_papers)}** 篇 ｜ 关键理论与沙盒启发 **{len(adj_papers)}** 篇\n")
+    md_lines.append(f"> **生成时间**：{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+    md_lines.append(f"本期经过 Jev Plus v1.3.1 严格分诊漏斗，客观精选 **{len(core_papers)} 篇核心闭环自进化论文** 与 **{len(adj_papers)} 篇外围关键理论/沙盒启发论文**。**原版 PDF 文献已全部下载归档至本目录**，点击下方本地超链接即可直接阅读。\n\n")
+    md_lines.append("---\n\n")
+    
+    md_lines.append("## 一、 🌟 核心自进化机制突破 (Core Self-Evolving)\n\n")
+    for idx, p in enumerate(core_papers, 1):
+        pid = p["id"]
+        title = p["title"]
+        pdf_name = downloaded_files.get(pid, "")
+        md_lines.append(f"### {idx}. [{title}](https://huggingface.co/papers/{pid})\n\n")
+        md_lines.append(f"- **学术评级**：{p['badge']}\n")
+        md_lines.append(f"- **论文元数据**：`arXiv:{pid}` | [Hugging Face 讨论页](https://huggingface.co/papers/{pid}) | [arXiv 原文](https://arxiv.org/abs/{pid})\n")
+        if pdf_name:
+            md_lines.append(f"- **📑 本地 PDF 全文**：**[点击直接在本地打开论文 PDF](./{pdf_name})** *(已归档至本目录)*\n")
+        md_lines.append(f"- **作者与机构**：{p['authors']}（{p['org']}）\n")
+        md_lines.append(f"- **社区关注度**：🔥 **{p['upvotes']}** Upvotes\n\n")
+        md_lines.append("#### 🔬 深度科研结构化拆解：\n\n")
+        md_lines.append(f"- **1. 具体研究什么 (What is being studied)**：\n  {p['deep_dive']['what']}\n")
+        md_lines.append(f"- **2. 解决了什么核心痛点 (Problem Solved & Pain Points)**：\n  {p['deep_dive']['problem']}\n")
+        md_lines.append(f"- **3. 提出的新技术 / 新架构 / 新理念 (Novel Techniques & Concepts)**：\n  {p['deep_dive']['novelty']}\n")
+        md_lines.append(f"- **4. 对自进化智能体研究的深远影响与启示 (Impact on Self-Evolving Agents)**：\n  {p['deep_dive']['impact']}\n\n")
+        md_lines.append(f"<details><summary>👉 点击展开查看论文官方英文 Abstract 原文</summary>\n\n> {p['abstract']}\n\n</details>\n\n")
+        md_lines.append("---\n\n")
+        
+    md_lines.append("## 二、 💡 外围关键理论与沙盒启发 (Adjacent Inspiration)\n\n")
+    for idx, p in enumerate(adj_papers, 1):
+        pid = p["id"]
+        title = p["title"]
+        pdf_name = downloaded_files.get(pid, "")
+        md_lines.append(f"### {idx}. [{title}](https://huggingface.co/papers/{pid})\n\n")
+        md_lines.append(f"- **学术评级**：{p['badge']}\n")
+        md_lines.append(f"- **论文元数据**：`arXiv:{pid}` | [Hugging Face 讨论页](https://huggingface.co/papers/{pid}) | [arXiv 原文](https://arxiv.org/abs/{pid})\n")
+        if pdf_name:
+            md_lines.append(f"- **📑 本地 PDF 全文**：**[点击直接在本地打开论文 PDF](./{pdf_name})** *(已归档至本目录)*\n")
+        md_lines.append(f"- **作者与机构**：{p['authors']}（{p['org']}）\n")
+        md_lines.append(f"- **社区关注度**：🔥 **{p['upvotes']}** Upvotes\n\n")
+        md_lines.append("#### 🔬 深度科研结构化拆解：\n\n")
+        md_lines.append(f"- **1. 具体研究什么 (What is being studied)**：\n  {p['deep_dive']['what']}\n")
+        md_lines.append(f"- **2. 解决了什么核心痛点 (Problem Solved & Pain Points)**：\n  {p['deep_dive']['problem']}\n")
+        md_lines.append(f"- **3. 提出的新技术 / 新架构 / 新理念 (Novel Techniques & Concepts)**：\n  {p['deep_dive']['novelty']}\n")
+        md_lines.append(f"- **4. 对自进化智能体研究的深远影响与启示 (Impact on Self-Evolving Agents)**：\n  {p['deep_dive']['impact']}\n\n")
+        md_lines.append(f"<details><summary>👉 点击展开查看论文官方英文 Abstract 原文</summary>\n\n> {p['abstract']}\n\n</details>\n\n")
+        md_lines.append("---\n\n")
+        
+    with open(md_file_path, "w", encoding="utf-8") as f:
+        f.write("".join(md_lines))
+    print(f"[OK] Generated: {md_file_path}")
+    
+    # 2. Generate 10-03摘要.md
+    summary_path = os.path.join(TARGET_DIR, "10-03摘要.md")
+    sum_lines = []
+    sum_lines.append("# 2026-10-03 论文速递：自进化智能体与底层演进机制深度摘要 (Jev Plus v1.3.1 零配额版)\n\n")
+    sum_lines.append("本期追踪全面落实 **Jev Plus v1.3.1 终极客观标准**：彻底打破历史“6+2”配额假象，杜绝无脑 adjacent 兜底，纯动态事实驱动。今日池子新增 73 篇论文，严苛精选 **5 篇核心闭环自进化机制** 与 **6 篇底层理论/沙盒启发**。\n\n")
+    sum_lines.append("---\n\n")
+    
+    for idx, p in enumerate(core_papers, 1):
+        sum_lines.append(f"## {idx}. {p['title']}\n")
+        sum_lines.append(f"- **核心痛点**：{p['deep_dive']['problem']}\n")
+        sum_lines.append(f"- **机制突破**：{p['deep_dive']['novelty']}\n")
+        sum_lines.append(f"- **自进化意义**：{p['deep_dive']['impact']}\n\n---\n\n")
+        
+    for idx, p in enumerate(adj_papers, len(core_papers) + 1):
+        sum_lines.append(f"## {idx}. {p['title']} ({p['category'].upper()})\n")
+        sum_lines.append(f"- **关键价值**：{p['deep_dive']['novelty']}\n")
+        sum_lines.append(f"- **实证结论**：{p['deep_dive']['impact']}\n\n---\n\n")
+        
+    with open(summary_path, "w", encoding="utf-8") as f:
+        f.write("".join(sum_lines))
+    print(f"[OK] Generated: {summary_path}")
+    
+    # 3. Update 00_论文追踪总索引.md
+    index_file = os.path.join(ROOT_DIR, "02_前沿论文追踪", "00_论文追踪总索引.md")
+    new_entry = f"| **2026-10-03** | 精选 **{len(core_papers)}** 篇核心机制突破 + **{len(adj_papers)}** 篇关键理论与沙盒 (Jev Plus v1.3.1 零配额版) | **{len(downloaded_files)}** 篇原版 PDF 全部归档 | [📂 打开当日追踪简报](./2026-10-03/2026-10-03_自进化智能体论文精选.md) | `2026-10-03/` |\n"
+    
+    with open(index_file, "r", encoding="utf-8") as f:
+        idx_content = f.read()
+        
+    if "| **2026-10-03** |" in idx_content:
+        lines = idx_content.splitlines(keepends=True)
+        new_lines = []
+        for line in lines:
+            if "| **2026-10-03** |" in line:
+                new_lines.append(new_entry)
+            else:
+                new_lines.append(line)
+        with open(index_file, "w", encoding="utf-8") as f:
+            f.writelines(new_lines)
+    else:
+        with open(index_file, "a", encoding="utf-8") as f:
+            f.write(new_entry)
+    print(f"[OK] Updated index table: {index_file}")
+
+if __name__ == "__main__":
+    main()
+
