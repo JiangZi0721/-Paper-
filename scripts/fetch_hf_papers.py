@@ -339,14 +339,8 @@ def run_daily_pipeline(target_date=None):
         local_pdf_path = os.path.join(date_dir, pdf_name)
         pdf_downloaded = False
         
-        # 纯正自进化智能体论文一律归档 PDF
-        if not os.path.exists(local_pdf_path) or os.path.getsize(local_pdf_path) == 0:
-            success = download_arxiv_pdf(pid, local_pdf_path)
-            if success:
-                pdf_downloaded = True
-                download_count += 1
-            time.sleep(1)
-        else:
+        # 依据 2026-10-08 工作区运维铁律：默认不再本地下载原版 PDF
+        if os.path.exists(local_pdf_path) and os.path.getsize(local_pdf_path) > 0:
             pdf_downloaded = True
             download_count += 1
             
@@ -360,6 +354,9 @@ def run_daily_pipeline(target_date=None):
         if pdf_downloaded:
             rel_pdf_path = f"./{pdf_name}"
             md_lines.append(f"- **📑 本地 PDF 全文**：**[点击直接在本地打开论文 PDF]({rel_pdf_path})** *(已归档至本目录)*\n")
+        else:
+            md_lines.append(f"- **📄 PDF 官方文献**：**[点击在线阅读官方原版 PDF](https://arxiv.org/pdf/{pid}.pdf)**\n")
+
             
         md_lines.append(f"- **作者与机构**：{authors_str}（{org}）\n")
         md_lines.append(f"- **社区关注度**：🔥 **{upvotes}** Upvotes | **命中自进化核心特征**：`{'`, `'.join(matches)}`\n\n")

@@ -1,0 +1,349 @@
+{
+  "created_at": "2026-10-08",
+  "total_files": 57,
+  "total_size_bytes": 220791568,
+  "records": [
+    {
+      "folder": "2026-09-18",
+      "file": "2609.17653_Reflect, Revise, Reuse_ Training-Free Skill Evolut.pdf",
+      "size": 5520902,
+      "arcname": "2026-09-18\\2609.17653_Reflect, Revise, Reuse_ Training-Free Skill Evolut.pdf"
+    },
+    {
+      "folder": "2026-09-18",
+      "file": "2609.20511_When EOS Tokens Disagree_ Understanding Length Inf.pdf",
+      "size": 7516848,
+      "arcname": "2026-09-18\\2609.20511_When EOS Tokens Disagree_ Understanding Length Inf.pdf"
+    },
+    {
+      "folder": "2026-09-18",
+      "file": "2609.20519_SoL-Pi_ Recursively Scaling Auto-Research Loops fo.pdf",
+      "size": 6137365,
+      "arcname": "2026-09-18\\2609.20519_SoL-Pi_ Recursively Scaling Auto-Research Loops fo.pdf"
+    },
+    {
+      "folder": "2026-09-18",
+      "file": "2609.20612_What Does Privileged Information Add to On-Policy .pdf",
+      "size": 1138945,
+      "arcname": "2026-09-18\\2609.20612_What Does Privileged Information Add to On-Policy .pdf"
+    },
+    {
+      "folder": "2026-09-18",
+      "file": "2609.20715_Don't Mask the Environment_ Observation Supervisio.pdf",
+      "size": 658821,
+      "arcname": "2026-09-18\\2609.20715_Don't Mask the Environment_ Observation Supervisio.pdf"
+    },
+    {
+      "folder": "2026-09-18",
+      "file": "2609.20784_RetireOPD_ Self-Retiring On-Policy Distillation fo.pdf",
+      "size": 1872090,
+      "arcname": "2026-09-18\\2609.20784_RetireOPD_ Self-Retiring On-Policy Distillation fo.pdf"
+    },
+    {
+      "folder": "2026-09-21",
+      "file": "2609.05571_Grounded Skill Synthesis from Code at Scale.pdf",
+      "size": 1643801,
+      "arcname": "2026-09-21\\2609.05571_Grounded Skill Synthesis from Code at Scale.pdf"
+    },
+    {
+      "folder": "2026-09-21",
+      "file": "2609.15779_EvoOntology_ A Self-Evolving Ontology Layer for Da.pdf",
+      "size": 1732587,
+      "arcname": "2026-09-21\\2609.15779_EvoOntology_ A Self-Evolving Ontology Layer for Da.pdf"
+    },
+    {
+      "folder": "2026-09-21",
+      "file": "2609.21619_Calibrating Teacher--Student Discrepancy for On-Po.pdf",
+      "size": 4418543,
+      "arcname": "2026-09-21\\2609.21619_Calibrating Teacher--Student Discrepancy for On-Po.pdf"
+    },
+    {
+      "folder": "2026-09-21",
+      "file": "2609.21749_GraphSkillEvo_ Evolutionary Optimization of Graph-S.pdf",
+      "size": 756571,
+      "arcname": "2026-09-21\\2609.21749_GraphSkillEvo_ Evolutionary Optimization of Graph-S.pdf"
+    },
+    {
+      "folder": "2026-09-21",
+      "file": "2609.22000_RecreationWorld_ Scalable and Verifiable Environment.pdf",
+      "size": 5527072,
+      "arcname": "2026-09-21\\2609.22000_RecreationWorld_ Scalable and Verifiable Environment.pdf"
+    },
+    {
+      "folder": "2026-09-21",
+      "file": "2609.22068_CodeMidas_ Scaling Agentic Coding RL Environments.pdf",
+      "size": 557460,
+      "arcname": "2026-09-21\\2609.22068_CodeMidas_ Scaling Agentic Coding RL Environments.pdf"
+    },
+    {
+      "folder": "2026-09-22",
+      "file": "2609.18766_FRAUDSkill_Structured_Frozen-Weight_Skill_Optimization.pdf",
+      "size": 2858985,
+      "arcname": "2026-09-22\\2609.18766_FRAUDSkill_Structured_Frozen-Weight_Skill_Optimization.pdf"
+    },
+    {
+      "folder": "2026-09-22",
+      "file": "2609.22086_Designer-RSI_Evolving_Procedural_Memory_from_User_Tra.pdf",
+      "size": 26031845,
+      "arcname": "2026-09-22\\2609.22086_Designer-RSI_Evolving_Procedural_Memory_from_User_Tra.pdf"
+    },
+    {
+      "folder": "2026-09-22",
+      "file": "2609.23377_One_to_More_More_to_One_Category-Aware_Iterative_Expert.pdf",
+      "size": 9303153,
+      "arcname": "2026-09-22\\2609.23377_One_to_More_More_to_One_Category-Aware_Iterative_Expert.pdf"
+    },
+    {
+      "folder": "2026-09-22",
+      "file": "2609.24432_IER-OPD_1_Percent_of_Tokens_Can_Be_Enough.pdf",
+      "size": 3472251,
+      "arcname": "2026-09-22\\2609.24432_IER-OPD_1_Percent_of_Tokens_Can_Be_Enough.pdf"
+    },
+    {
+      "folder": "2026-09-22",
+      "file": "2609.24446_ActGov_Governing_LLM_Agent_Actions.pdf",
+      "size": 539885,
+      "arcname": "2026-09-22\\2609.24446_ActGov_Governing_LLM_Agent_Actions.pdf"
+    },
+    {
+      "folder": "2026-09-23",
+      "file": "2609.06052_SkillSpec_Intent-Masked_Specification_Reasoning.pdf",
+      "size": 2324098,
+      "arcname": "2026-09-23\\2609.06052_SkillSpec_Intent-Masked_Specification_Reasoning.pdf"
+    },
+    {
+      "folder": "2026-09-23",
+      "file": "2609.23986_Jev-Mem_System-One-Controlled_Agentic_Memory.pdf",
+      "size": 932226,
+      "arcname": "2026-09-23\\2609.23986_Jev-Mem_System-One-Controlled_Agentic_Memory.pdf"
+    },
+    {
+      "folder": "2026-09-23",
+      "file": "2609.23989_ACLArena_Agent_Continue_Learning_in_Multi-stage_Post-training.pdf",
+      "size": 1728826,
+      "arcname": "2026-09-23\\2609.23989_ACLArena_Agent_Continue_Learning_in_Multi-stage_Post-training.pdf"
+    },
+    {
+      "folder": "2026-09-23",
+      "file": "2609.24972_RRSI_Regularized_Recursive_Self-Improvement_of_Agent_Harnesses.pdf",
+      "size": 955664,
+      "arcname": "2026-09-23\\2609.24972_RRSI_Regularized_Recursive_Self-Improvement_of_Agent_Harnesses.pdf"
+    },
+    {
+      "folder": "2026-09-23",
+      "file": "2609.24974_Harness-Zero_Harness_Distillation_via_Agent-as-Harness.pdf",
+      "size": 870680,
+      "arcname": "2026-09-23\\2609.24974_Harness-Zero_Harness_Distillation_via_Agent-as-Harness.pdf"
+    },
+    {
+      "folder": "2026-09-23",
+      "file": "2609.24983_onPanda_Efficient_Annotation_of_On-Policy_Alignment_Data.pdf",
+      "size": 2134182,
+      "arcname": "2026-09-23\\2609.24983_onPanda_Efficient_Annotation_of_On-Policy_Alignment_Data.pdf"
+    },
+    {
+      "folder": "2026-09-24",
+      "file": "2609.15987_Bellman_Policy_Optimization.pdf",
+      "size": 427044,
+      "arcname": "2026-09-24\\2609.15987_Bellman_Policy_Optimization.pdf"
+    },
+    {
+      "folder": "2026-09-24",
+      "file": "2609.24115_EDGEGEN_Improving_Tool-Calling_Agents_Beyond_Happy_Paths.pdf",
+      "size": 571688,
+      "arcname": "2026-09-24\\2609.24115_EDGEGEN_Improving_Tool-Calling_Agents_Beyond_Happy_Paths.pdf"
+    },
+    {
+      "folder": "2026-09-24",
+      "file": "2609.25804_The_Tasteful_Agent_Measuring_and_Improving_Taste_in_Long-Horizon_Tasks.pdf",
+      "size": 1308586,
+      "arcname": "2026-09-24\\2609.25804_The_Tasteful_Agent_Measuring_and_Improving_Taste_in_Long-Horizon_Tasks.pdf"
+    },
+    {
+      "folder": "2026-09-24",
+      "file": "2609.26457_Recursive_Self-Improvement_of_AI_Research_Agents.pdf",
+      "size": 737558,
+      "arcname": "2026-09-24\\2609.26457_Recursive_Self-Improvement_of_AI_Research_Agents.pdf"
+    },
+    {
+      "folder": "2026-09-24",
+      "file": "2609.26781_Agensh_Scaling_Organizational_Intelligence_to_1024_Agents.pdf",
+      "size": 1324480,
+      "arcname": "2026-09-24\\2609.26781_Agensh_Scaling_Organizational_Intelligence_to_1024_Agents.pdf"
+    },
+    {
+      "folder": "2026-09-24",
+      "file": "2609.27490_WhatWorkedBench_Benchmarking_Experimental_Understanding_in_AI_Agents.pdf",
+      "size": 609700,
+      "arcname": "2026-09-24\\2609.27490_WhatWorkedBench_Benchmarking_Experimental_Understanding_in_AI_Agents.pdf"
+    },
+    {
+      "folder": "2026-09-25",
+      "file": "2609.28416_Agent_Editing_World_Model.pdf",
+      "size": 2554223,
+      "arcname": "2026-09-25\\2609.28416_Agent_Editing_World_Model.pdf"
+    },
+    {
+      "folder": "2026-09-25",
+      "file": "2609.29444_IterSynth_Deep_Search_Agents.pdf",
+      "size": 3974819,
+      "arcname": "2026-09-25\\2609.29444_IterSynth_Deep_Search_Agents.pdf"
+    },
+    {
+      "folder": "2026-09-25",
+      "file": "2609.29647_AgentKernel_Trust_Native_Agent_OS.pdf",
+      "size": 739858,
+      "arcname": "2026-09-25\\2609.29647_AgentKernel_Trust_Native_Agent_OS.pdf"
+    },
+    {
+      "folder": "2026-09-25",
+      "file": "2609.29892_Qwen_Planner_Agent_Closed_Loop_AI_for_AI.pdf",
+      "size": 7263793,
+      "arcname": "2026-09-25\\2609.29892_Qwen_Planner_Agent_Closed_Loop_AI_for_AI.pdf"
+    },
+    {
+      "folder": "2026-09-25",
+      "file": "2609.30266_LLM_Agents_Can_Easily_Tamper_With_Their_Own_Traces.pdf",
+      "size": 584220,
+      "arcname": "2026-09-25\\2609.30266_LLM_Agents_Can_Easily_Tamper_With_Their_Own_Traces.pdf"
+    },
+    {
+      "folder": "2026-09-28",
+      "file": "2609.04355_VLA-Precision_Asymmetric_Co-Bootstrapping_Real-World_Online_RL.pdf",
+      "size": 15017777,
+      "arcname": "2026-09-28\\2609.04355_VLA-Precision_Asymmetric_Co-Bootstrapping_Real-World_Online_RL.pdf"
+    },
+    {
+      "folder": "2026-09-28",
+      "file": "2609.29050_SLCA-GRPO_Resolving_Cross-Segment_Credit_Misattribution_in_Tool-Calling_RL.pdf",
+      "size": 8997017,
+      "arcname": "2026-09-28\\2609.29050_SLCA-GRPO_Resolving_Cross-Segment_Credit_Misattribution_in_Tool-Calling_RL.pdf"
+    },
+    {
+      "folder": "2026-09-28",
+      "file": "2609.30216_Jev_in_the_Wild_Data-Driven_Analysis_Jev_Model.pdf",
+      "size": 1924687,
+      "arcname": "2026-09-28\\2609.30216_Jev_in_the_Wild_Data-Driven_Analysis_Jev_Model.pdf"
+    },
+    {
+      "folder": "2026-09-28",
+      "file": "2609.31590_AgentWorld_Benchmarking_Long-Horizon_Collaboration_Multi-agent_LLMs.pdf",
+      "size": 4581461,
+      "arcname": "2026-09-28\\2609.31590_AgentWorld_Benchmarking_Long-Horizon_Collaboration_Multi-agent_LLMs.pdf"
+    },
+    {
+      "folder": "2026-09-29",
+      "file": "2609.30247_Rolling-WAM_World_Action_Models_Rolling_Imagination.pdf",
+      "size": 5720854,
+      "arcname": "2026-09-29\\2609.30247_Rolling-WAM_World_Action_Models_Rolling_Imagination.pdf"
+    },
+    {
+      "folder": "2026-09-29",
+      "file": "2609.32444_Training-Inference_Mismatch_LLM_RL_Calibrated_IS.pdf",
+      "size": 1734074,
+      "arcname": "2026-09-29\\2609.32444_Training-Inference_Mismatch_LLM_RL_Calibrated_IS.pdf"
+    },
+    {
+      "folder": "2026-09-29",
+      "file": "2609.32862_RoboFoundry_System-as-Policy_Evolution_Embodied_Agents.pdf",
+      "size": 17917235,
+      "arcname": "2026-09-29\\2609.32862_RoboFoundry_System-as-Policy_Evolution_Embodied_Agents.pdf"
+    },
+    {
+      "folder": "2026-09-29",
+      "file": "2609.33391_Beyond_Timestamps_Decision-Aligned_On-Policy_Distillation.pdf",
+      "size": 1821439,
+      "arcname": "2026-09-29\\2609.33391_Beyond_Timestamps_Decision-Aligned_On-Policy_Distillation.pdf"
+    },
+    {
+      "folder": "2026-09-29",
+      "file": "2609.33665_CompoWorld_Compositional_Environment_Scaling_General_Agents.pdf",
+      "size": 515780,
+      "arcname": "2026-09-29\\2609.33665_CompoWorld_Compositional_Environment_Scaling_General_Agents.pdf"
+    },
+    {
+      "folder": "2026-09-29",
+      "file": "2609.33772_Skill2Env_Capability-Oriented_Environment_Synthesis_Skills.pdf",
+      "size": 2080777,
+      "arcname": "2026-09-29\\2609.33772_Skill2Env_Capability-Oriented_Environment_Synthesis_Skills.pdf"
+    },
+    {
+      "folder": "2026-09-29",
+      "file": "2609.33781_Entropy-Guided_Credit_Assignment_EAPO_LLM_Reasoning.pdf",
+      "size": 778634,
+      "arcname": "2026-09-29\\2609.33781_Entropy-Guided_Credit_Assignment_EAPO_LLM_Reasoning.pdf"
+    },
+    {
+      "folder": "2026-09-29",
+      "file": "2609.33855_Program-Verified_Self-Evolution_Vision-Language_Models_VQS.pdf",
+      "size": 24452076,
+      "arcname": "2026-09-29\\2609.33855_Program-Verified_Self-Evolution_Vision-Language_Models_VQS.pdf"
+    },
+    {
+      "folder": "2026-09-29",
+      "file": "2609.34313_ControlScope_Workflow_Revision_Reliability_LLM_Agents.pdf",
+      "size": 328267,
+      "arcname": "2026-09-29\\2609.34313_ControlScope_Workflow_Revision_Reliability_LLM_Agents.pdf"
+    },
+    {
+      "folder": "2026-09-29",
+      "file": "2609.35432_Self-Evolving_Coding_Agents_Physical-World_Intelligence.pdf",
+      "size": 9684544,
+      "arcname": "2026-09-29\\2609.35432_Self-Evolving_Coding_Agents_Physical-World_Intelligence.pdf"
+    },
+    {
+      "folder": "2026-09-29",
+      "file": "2609.35551_BaRe-Mem_Bayesian_Reliability_Memory_Agent_Consultation.pdf",
+      "size": 1407420,
+      "arcname": "2026-09-29\\2609.35551_BaRe-Mem_Bayesian_Reliability_Memory_Agent_Consultation.pdf"
+    },
+    {
+      "folder": "2026-09-30",
+      "file": "2609.33589_TGRL_Temperature-Grouped_RL_Efficient_Exploration_LLMs.pdf",
+      "size": 851425,
+      "arcname": "2026-09-30\\2609.33589_TGRL_Temperature-Grouped_RL_Efficient_Exploration_LLMs.pdf"
+    },
+    {
+      "folder": "2026-09-30",
+      "file": "2609.36864_Where_Model_Changes_Mind_Hindsight-Divergence_RLVR.pdf",
+      "size": 891542,
+      "arcname": "2026-09-30\\2609.36864_Where_Model_Changes_Mind_Hindsight-Divergence_RLVR.pdf"
+    },
+    {
+      "folder": "2026-09-30",
+      "file": "2609.36892_Harness_Evolution_as_Learning_Self-Improving_Agents.pdf",
+      "size": 942877,
+      "arcname": "2026-09-30\\2609.36892_Harness_Evolution_as_Learning_Self-Improving_Agents.pdf"
+    },
+    {
+      "folder": "2026-09-30",
+      "file": "2609.36900_STAR-GRPO_Anchored_Reliability_Reward_Hacking.pdf",
+      "size": 1349215,
+      "arcname": "2026-09-30\\2609.36900_STAR-GRPO_Anchored_Reliability_Reward_Hacking.pdf"
+    },
+    {
+      "folder": "2026-09-30",
+      "file": "2609.36935_CoEM_Commit-on-Evidence_Memory_Long-Context_Reasoning.pdf",
+      "size": 1780755,
+      "arcname": "2026-09-30\\2609.36935_CoEM_Commit-on-Evidence_Memory_Long-Context_Reasoning.pdf"
+    },
+    {
+      "folder": "2026-09-30",
+      "file": "2609.36939_SCA_Spatial_Credit_Assignment_RL_GUI_Agents.pdf",
+      "size": 8115228,
+      "arcname": "2026-09-30\\2609.36939_SCA_Spatial_Credit_Assignment_RL_GUI_Agents.pdf"
+    },
+    {
+      "folder": "2026-09-30",
+      "file": "2609.36945_Fine-Tuning_Self-Generated_Reward-Weighted_Data_Dynamics.pdf",
+      "size": 507076,
+      "arcname": "2026-09-30\\2609.36945_Fine-Tuning_Self-Generated_Reward-Weighted_Data_Dynamics.pdf"
+    },
+    {
+      "folder": "2026-09-30",
+      "file": "2609.36965_Chinese-Jev_System_One_Model_Chinese_Tasks.pdf",
+      "size": 662639,
+      "arcname": "2026-09-30\\2609.36965_Chinese-Jev_System_One_Model_Chinese_Tasks.pdf"
+    }
+  ]
+}

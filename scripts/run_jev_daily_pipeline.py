@@ -192,6 +192,8 @@ def generate_structured_digest(target_date: str, records: list[dict], pdf_map: d
             ])
             if pid in pdf_map:
                 lines.append(f"- **本地 PDF 文献**：**[📑 点击直接在本地打开原版论文 PDF]({pdf_map[pid]})** *(已归档至本目录)*")
+            else:
+                lines.append(f"- **PDF 官方文献**：**[📑 点击在线阅读官方原版 PDF](https://arxiv.org/pdf/{pid}.pdf)**")
                 
             lines.extend([
                 f"- **学术评级**：{tier_badge}",
@@ -303,7 +305,7 @@ def update_global_index(date_str: str, core_count: int, pdf_count: int, digest_p
                 f.write(new_entry_line)
 
 
-def run_pipeline(target_date: str | None = None, limit: int | None = None) -> int:
+def run_pipeline(target_date: str | None = None, limit: int | None = None, download_pdf: bool = False) -> int:
     target_date = target_date or datetime.now().strftime("%Y-%m-%d")
     date_dir = BASE_PAPERS_DIR / target_date
     date_dir.mkdir(parents=True, exist_ok=True)
@@ -368,13 +370,13 @@ def run_pipeline(target_date: str | None = None, limit: int | None = None) -> in
     triage_path.write_text(json.dumps(report_meta, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"[√] 原始 Jev 结构化分诊数据已保存: {triage_path.name}")
     
-    # 下载核心论文原版 PDF（仅正式全量运行时执行）
+    # 依据 2026-10-08 工作区运维铁律：默认不再自动下载原版 PDF，仅在显式指定 --download-pdf 时下载
     pdf_map = {}
     core_records = [r for r in records if bucket_for(r) in ("new_idea_insight", "algorithm_score_optimization")]
     pdf_download_count = 0
     
-    if not limit:
-        print(f"[*] 共有 {len(core_records)} 篇核心自进化智能体论文，开始自动化下载原版 PDF...")
+    if download_pdf and not limit:
+        print(f"[*] 收到 --download-pdf 指令，共有 {len(core_records)} 篇核心自进化智能体论文，开始自动化下载原版 PDF...")
         for r in core_records:
             p = r["paper"]
             pid = p["id"]
@@ -392,7 +394,8 @@ def run_pipeline(target_date: str | None = None, limit: int | None = None) -> in
                 pdf_map[pid] = f"./{pdf_filename}"
                 pdf_download_count += 1
     else:
-        print(f"[*] 调试模式: 跳过 PDF 自动批量下载")
+        print(f"[*] 遵循轻量化与零 PDF 规范: 跳过 PDF 本地自动下载，使用官方 arXiv PDF 在线链接")
+
             
     # 生成精选 Digest Markdown
     digest_filename = f"digest_sample_{limit}.md" if limit else f"{target_date}_自进化智能体论文精选.md"
@@ -414,8 +417,10 @@ def main():
     parser = argparse.ArgumentParser(description="Jev Self-Evolving Agents Daily Papers Pipeline")
     parser.add_argument("--date", type=str, help="Target date in YYYY-MM-DD format")
     parser.add_argument("--limit", type=int, help="Limit number of papers for debugging")
+    parser.add_argument("--download-pdf", action="store_true", help="Download raw arXiv PDFs locally (default: False)")
     args = parser.parse_args()
-    return run_pipeline(target_date=args.date, limit=args.limit)
+    return run_pipeline(target_date=args.date, limit=args.limit, download_pdf=args.download_pdf)
+
 
 
 if __name__ == "__main__":
