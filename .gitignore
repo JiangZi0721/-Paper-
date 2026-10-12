@@ -5,4 +5,7 @@ __pycache__/
 *.pyc
 scratch/
 scratch*.txt
-*.zip
+*.zip
+triage.json
+*_html.html
+*_text.txt
