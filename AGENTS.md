@@ -50,3 +50,11 @@
 2. **官方超链接完整直达**：在 Markdown 简报、摘要与索引中，统一使用官方 `arXiv` 摘要页（`https://arxiv.org/abs/{id}`）、官方 PDF 预览页（`https://arxiv.org/pdf/{id}.pdf`）、Hugging Face Papers 讨论页及 GitHub 开源仓库链接；
 3. **久远论文打包归档规范**：跨月或久远批次的已有原版 PDF 统一压缩归档至 `02_前沿论文追踪/archive/`（如 `september_2026_pdfs.zip`），并配齐元数据清单 `manifest.json` 与 `README.md`，彻底释放本地存储。
 
+---
+
+## ⚡ 超长文件与大块编辑防 60 秒断流铁律 (Anti-Timeout Chunked Writing & Editing)
+1. **`write_to_file` 单次字数硬封顶（≤ 10,000 字符 / 200 行）**：生成每日论文精选简报等长文时，严禁单次塞入全文；必须分 3~4 次连续调用 `write_to_file`（首次 `Overwrite: true`，后续连续 `Append: true` 无感追加）。
+2. **`replace_file_content` 严禁整表重抄与大块替换（单次总字数 ≤ 5,000 字符）**：
+   - 更新论文分诊矩阵表、摘要或章节时，**绝对禁止把整张旧表格（几十行）或整段旧章节塞进 `TargetContent` 重抄一遍**；
+   - 必须**仅截取目标位置最后 2~3 行作为最小锚点（`TargetContent` ≤ 1,000 字符）**进行增量插入，且单次 `ReplacementContent` 严禁超过 5,000 字符（若新增内容较多，必须拆成 2~3 次小范围 `replace_file_content` 调用完成）。
+
